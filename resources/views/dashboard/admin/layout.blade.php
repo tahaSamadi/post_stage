@@ -25,6 +25,8 @@
 
 <body data-layout="detached" data-topbar="colored">
 
+    life is goooood
+
 <div class="container-fluid">
     <!-- Begin page -->
     <div id="layout-wrapper">
