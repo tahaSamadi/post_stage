@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.admin.layout');
-});
+
+//news_route
+Route::get('/news/create',[\App\Http\Controllers\admin\news_controller::class,'create']);

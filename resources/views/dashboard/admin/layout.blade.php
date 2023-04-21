@@ -39,6 +39,11 @@
         <!-- ============================================================== -->
         <div class="main-content">
 
+            <div class="page-content">
+
+                @yield('main_content')
+
+            </div>
 
             <footer class="footer">
                 <div class="container-fluid">
