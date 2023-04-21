@@ -22,8 +22,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
-                    <h4 class="card-title">ایجاذ اخبار</h4>
+                    <h4 class="card-title">{{ $crud_names[$module_crud_type['type']] }} {{__("modules_name.".$module_crud_type['module'])}} </h4>
 
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label">متن</label>
