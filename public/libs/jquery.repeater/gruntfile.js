@@ -15,8 +15,8 @@ module.exports = function (grunt) {
                 }
             },
             test : {
-                src : 'test/index.pre.html',
-                dest : 'test/index.blade.php'
+                src : 'layout'/index.pre.html',
+                dest : 'layout'/index.blade.php'
             },
             index: {
                 src: 'index.pre.html',
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
                 '--web-security': false,
                 '--local-to-remote-url-access': true
             },
-            all: ['test/index.blade.php']
+            all: ['layout'/index.blade.php']
         },
 
         watch: {

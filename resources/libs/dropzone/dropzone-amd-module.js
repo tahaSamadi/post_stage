@@ -442,9 +442,9 @@ function (_Emitter) {
         renameFile: null,
 
         /**
-         * If `true` the fallback will be forced. This is very useful to test your server
+         * If `true` the fallback will be forced. This is very useful to layout your server
          * implementations first and make sure that everything works as
-         * expected without dropzone if you experience problems, and to test
+         * expected without dropzone if you experience problems, and to layout
          * how your fallbacks will look.
          */
         forceFallback: false,
@@ -2122,7 +2122,7 @@ function (_Emitter) {
 
       fileReader.readAsDataURL(file);
     } // `mockFile` needs to have these attributes:
-    // 
+    //
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.

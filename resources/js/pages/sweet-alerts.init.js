@@ -3,7 +3,7 @@ Template Name: Qovex - Responsive Bootstrap 4 Admin Dashboard
 Author: Themesbrand
 Website: https://themesbrand.com/
 Contact: themesbrand@gmail.com
-File: Sweet alerts 
+File: Sweet alerts
 */
 
 !function ($) {
@@ -118,7 +118,7 @@ File: Sweet alerts
         		animation: false
         	})
         });
-		
+
         //Auto Close Timer
         $('#sa-close').click(function () {
         	var timerInterval;
@@ -183,7 +183,7 @@ File: Sweet alerts
         		padding: 100,
         		confirmButtonColor: "#3b5de7",
         		confirmButtonText: 'باشه',
-        		background: '#fff url(assets/images/geometry.png)'
+        		background: '#fff url(/images/geometry.png)'
         	});
         });
 
