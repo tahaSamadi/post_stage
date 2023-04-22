@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ $crud_names[$module_crud_type['type']] }} {{__("modules_name.".$module_crud_type['module'])}} </h4>
 
-                    @component('components.form.form',['action'=>route('news.cats.store'),'method'=>'post'])
+                    @component('components.form.form',['action'=>route('news_cats.cats.store'),'method'=>'post'])
                         @slot('items')
                             @component('components.form.input',['id'=>'title','name'=>'title','label'=>'عنوان','value'=>old('title')])@endcomponent
                             @component('components.form.input',['id'=>'slug','name'=>'slug','label'=>'اسلاگ','value'=>old('slug')])@endcomponent

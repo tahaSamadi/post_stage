@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class news_controller extends Controller
 {
     public function create(){
-        return view("dashboard.admin.module.news.create_news");
+        return view("dashboard.admin.module.news_cats.create_news");
     }
 }

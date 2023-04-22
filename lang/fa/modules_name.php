@@ -2,5 +2,5 @@
 
 return [
     // modules_name\
-    'news'=>'اخبار'
+    'news_cats'=>'اخبار'
 ];
