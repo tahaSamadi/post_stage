@@ -14,6 +14,7 @@ class news_cats_controller extends Controller
         return view("dashboard.admin.module.news.create_news",compact('news_cats'));
     }
     public function store(news_cat_request $request){
-        return $request->all();
+        news_cats::create($request->all());
+        return back()->with(['success'=>'دسته بندی خبر ایجاد شد']);
     }
 }

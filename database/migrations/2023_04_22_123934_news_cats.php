@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('description');
+            $table->text('description');
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->on('news_cats')->references('id')->onDelete('cascade');
             $table->integer('state')->default(1);

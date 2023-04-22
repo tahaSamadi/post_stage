@@ -25,7 +25,7 @@ class news_cat_request extends FormRequest
         return [
             'title'=>['required'],
             'description'=>['required'],
-            'slug'=>['unique','required']
+            'slug'=>['unique:news_cats','required']
         ];
     }
     protected function prepareForValidation()

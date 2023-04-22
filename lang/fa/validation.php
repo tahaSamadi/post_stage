@@ -187,6 +187,9 @@ return [
         'last_name' => 'نام خانوادگی',
         'password' => 'رمز عبور',
         'password_confirmation' => 'تاییدیه رمز عبور',
+        'title' => 'عنوان',
+        'description' => 'توضیحات',
+        'slug' => 'اسلاگ',
     ],
 
 ];
