@@ -23,14 +23,12 @@
                 <li>
                     <a href="javascript:%20void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-flip-horizontal"></i>
-                        <span>طرح ها</span>
+                        <span>اخبار</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="layouts-horizontal.html">افقی</a></li>
-                        <li><a href="layouts-compact-sidebar.html">نوار کناری فشرده</a></li>
-                        <li><a href="layouts-icon-sidebar.html">نوار کناری آیکن</a></li>
-                        <li><a href="layouts-boxed.html">طرح جعبه ای</a></li>
-                        <li><a href="layouts-preloader.html">انیمیشن بارگذاری</a></li>
+                        <li><a href="javascript:void(0)">ایجاد دسته بندی اخبار</a></li>
+                        <li><a href="javascript:void(0)">لیست دسته بندی اخبار</a></li>
+                        <li><a href="javascript:void(0)">ایجاد اخبار</a></li>
                     </ul>
                 </li>
 
