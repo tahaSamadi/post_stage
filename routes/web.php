@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 
 //news_route
-Route::get('/news/create',[\App\Http\Controllers\admin\news_controller::class,'create']);
+Route::get('/news/cats/create',[\App\Http\Controllers\admin\news_cats_controller::class,'create'])->name('news.cats.create');

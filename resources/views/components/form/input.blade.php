@@ -1,9 +1,8 @@
 @props(['id'=>'','type'=>'text','name'=>'','value'=>'','attr'=>[],'label'=>''])
-<div class="form-group row">
+<div class="mt-3">
     @if($label != '')
-    <label for="{{$id}}" class="col-md-2 col-form-label">{{$label}}</label>
+        <label for="{{$id}}" class="col-form-label">{{$label}}</label>
     @endif
-    <div class="col-md-10">
-        <input class="form-control" type="{{$type}}" value="{{$value}}" id="{{$id}}" {!! $attributes->merge($attr) !!}>
-    </div>
+    <input id="{{$id}}" class="form-control" type="{{$type}}" value="{{$value}}"
+           name="{{$name}}" {!! $attributes->merge($attr) !!}>
 </div>

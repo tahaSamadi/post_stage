@@ -1347,10 +1347,10 @@ body[data-layout="detached"] .page-title-box .breadcrumb-item.active, body[data-
 
 /*!
  * Waves v0.7.6
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;
@@ -3922,4 +3922,7 @@ input.knob {
   right: 0px;
   left: 0px;
   top: 12px;
+}
+.no-resize{
+    resize: none;
 }

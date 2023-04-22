@@ -19,13 +19,14 @@
     <!-- App Css -->
     <link href="/css/app.css" id="app-style" rel="stylesheet" type="text/css">
     <!-- Theme Color -->
+    <link href="/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
     <meta name="theme-color" content="#283D92">
 
 </head>
 
 <body data-layout="detached" data-topbar="colored">
 
-   
+
 
 <div class="container-fluid">
     <!-- Begin page -->
@@ -113,23 +114,23 @@
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
+<!-- JAVASCRIPT -->
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/libs/metismenu/metisMenu.min.js"></script>
 <script src="/libs/simplebar/simplebar.min.js"></script>
+<script src="/libs/select2/js/select2.min.js"></script>
 <script src="/libs/node-waves/waves.min.js"></script>
 
-<!-- apexcharts -->
-<script src="/libs/apexcharts/apexcharts.min.js"></script>
-
-<!-- jquery.vectormap map -->
-<script src="/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
-
-<script src="/js/pages/dashboard.init.js"></script>
-
+<!-- App js -->
 <script src="/js/app.js"></script>
+<script>
+    $(".select2").select2();
 
+    $(".select2-limiting").select2({
+        maximumSelectionLength: 2
+    });
+</script>
 </body>
 
 </html>
