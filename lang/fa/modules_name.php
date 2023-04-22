@@ -2,5 +2,5 @@
 
 return [
     // modules_name\
-    'news_cats'=>'اخبار'
+    'news-cats'=>'دسته بندی اخبار'
 ];

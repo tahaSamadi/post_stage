@@ -37,7 +37,7 @@ class LangServiceProvider extends ServiceProvider
             $crud_names=[
                 'create'=>'ایجاد',
                 'edit'=>'اخبار',
-                'list'=>'لیست',
+                'index'=>'لیست',
             ];
             $view->with('crud_names',$crud_names);
         });

@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer(['dashboard.admin.module.news_cats.*'], function($view){
-            $news_cats=news_cats::where('parent_id',null)->get(['id','title']);
+            $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title']);
             $view->with('news_cats',$news_cats);
         });
     }
