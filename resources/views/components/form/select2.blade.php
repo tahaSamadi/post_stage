@@ -1,4 +1,4 @@
-@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false])
+@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false, 'sub_method' => ''])
 <div class="row">
     <div class="col-lg-6">
         <div class="card">
@@ -11,7 +11,7 @@
                         @endif
                         @foreach($options as $option)
                             <option value="{{$option["id"]}}">{{$option["title"]}}</option>
-                            @include('components.form.option',['options'=>$option->sub_cats])
+                            @component('components.form.sub_option',['options'=>$option, 'method'=>$sub_method])@endcomponent
                         @endforeach
 
                     </select>

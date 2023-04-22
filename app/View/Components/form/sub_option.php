@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\from;
+namespace App\View\Components\form;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class select2 extends Component
+class sub_option extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class select2 extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.from.select2');
+        return view('components.form.sub_option');
     }
 }

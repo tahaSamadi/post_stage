@@ -23,7 +23,7 @@
                         @slot('items')
                             @component('components.form.input',['id'=>'title','name'=>'title','label'=>'عنوان'])@endcomponent
                             @component('components.form.textarea',['id'=>'description','name'=>'description','label'=>'توضیحات'])@endcomponent
-                            @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats,'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی'])@endcomponent
+                            @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats,'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی', 'sub_method'=>'sub_cats'])@endcomponent
                         @endslot
                     @endcomponent
                 </div>

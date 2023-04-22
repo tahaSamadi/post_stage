@@ -3934,3 +3934,6 @@ input.knob {
 .select2-selection__arrow {
     height: 34px !important;
 }
+.no-resize{
+    resize:none !important;
+}
