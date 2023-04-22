@@ -19,11 +19,13 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{ $crud_names[$module_crud_type['type']] }} {{__("modules_name.".$module_crud_type['module'])}} </h4>
-                    @component('components.form.form')
+                    @component('components.form.form',['action'=>route('news.cats.store'),'method'=>'post'])
                         @slot('items')
                             @component('components.form.input',['id'=>'title','name'=>'title','label'=>'عنوان'])@endcomponent
+                            @component('components.form.input',['id'=>'slug','name'=>'slug','label'=>'اسلاگ'])@endcomponent
                             @component('components.form.textarea',['id'=>'description','name'=>'description','label'=>'توضیحات'])@endcomponent
                             @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats,'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی', 'sub_method'=>'sub_cats'])@endcomponent
+                            @component('components.form.button',['attr'=>['class'=>'btn btn-primary mt-4'],'type'=>'submit','value'=>'ثبت    فرم'])@endcomponent
                         @endslot
                     @endcomponent
                 </div>

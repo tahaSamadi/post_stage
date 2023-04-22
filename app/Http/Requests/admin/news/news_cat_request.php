@@ -3,6 +3,7 @@
 namespace App\Http\Requests\admin\news;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class news_cat_request extends FormRequest
 {
@@ -11,7 +12,7 @@ class news_cat_request extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,15 @@ class news_cat_request extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'=>['required'],
+            'description'=>['required'],
+            'slug'=>['unique','required']
         ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug'=>Str::slug($this->slug),
+        ]);
     }
 }
