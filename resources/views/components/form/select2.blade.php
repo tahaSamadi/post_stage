@@ -11,6 +11,7 @@
                         @endif
                         @foreach($options as $option)
                             <option value="{{$option["id"]}}">{{$option["title"]}}</option>
+                            @include('components.form.option',['options'=>$option->sub_cats])
                         @endforeach
 
                     </select>
