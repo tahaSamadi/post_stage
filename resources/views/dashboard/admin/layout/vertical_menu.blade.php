@@ -8,8 +8,8 @@
 
             <div class="mt-3">
 
-                <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h">جان اسنو</a>
-                <p class="text-body mt-1 mb-0 font-size-13">طراح رابط کاربری</p>
+                <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h">طاها صمدی</a>
+                <p class="text-body mt-1 mb-0 font-size-13">ادمین وبسایت</p>
 
             </div>
         </div>
@@ -18,7 +18,7 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">اخبار</li>
+                <li class="menu-title">منوها</li>
 
                 <li>
                     <a href="javascript:%20void(0);" class="has-arrow waves-effect">

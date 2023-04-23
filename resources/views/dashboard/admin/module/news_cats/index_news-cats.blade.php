@@ -13,31 +13,6 @@
         </div>
     </div>
     <!-- end page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-
-
-
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" id="check_all"></th>
-                            <th>عنوان</th>
-                            <th>وضعیت</th>
-                            <th>عملیات</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </div>
-        <!-- end col -->
-    </div>
+    @component('components.form.table',['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'data'=>$news_cats])@endcomponent
 
 @endsection

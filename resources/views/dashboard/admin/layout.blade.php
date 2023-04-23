@@ -35,34 +35,15 @@
         @include('dashboard.admin.layout.header')
         <!-- ========== Left Sidebar Start ========== -->
         @include('dashboard.admin.layout.vertical_menu')
-        <!-- Left Sidebar End -->
+        <!-- ========== Left Sidebar END ========== -->
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
-
                 @yield('main_content')
-
             </div>
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script>
-                            © کووکس.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-right d-none d-sm-block">
-                                ارائه شده در وب‌سایت راست‌چین
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
 
@@ -70,50 +51,8 @@
     <!-- END layout-wrapper -->
 
 </div>
-<!-- end container-fluid -->
 
-<!-- Right Sidebar -->
-<div class="right-bar">
-    <div data-simplebar class="h-100">
-        <div class="rightbar-title px-3 py-4">
-            <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                <i class="mdi mdi-close noti-icon"></i>
-            </a>
-            <h5 class="m-0">تنظیمات</h5>
-        </div>
 
-        <!-- Settings -->
-        <hr class="mt-0">
-        <h6 class="text-center mb-0">انتخاب طرح</h6>
-
-        <div class="p-4">
-            <div class="mb-2">
-                <img src="/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
-            </div>
-            <div class="custom-control custom-switch mb-3">
-                <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked>
-                <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
-            </div>
-
-            <div class="mb-2">
-                <img src="/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
-            </div>
-            <div class="custom-control custom-switch mb-3">
-                <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
-                       data-bsstyle="/css/bootstrap-dark.min.css" data-appstyle="/css/app-dark.css">
-                <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
-            </div>
-        </div>
-
-    </div>
-    <!-- end slimscroll-menu-->
-</div>
-<!-- /Right-bar -->
-
-<!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
-
-<!-- JAVASCRIPT -->
 <!-- JAVASCRIPT -->
 <script src="/libs/jquery/jquery.min.js"></script>
 <script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -129,6 +68,9 @@
 
     $(".select2-limiting").select2({
         maximumSelectionLength: 2
+    });
+    $("#check_all").click(function(){
+        $('.item').not(this).prop('checked', this.checked);
     });
 </script>
 </body>
