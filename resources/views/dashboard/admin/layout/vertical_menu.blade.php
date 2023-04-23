@@ -22,7 +22,7 @@
 
                 <li>
                     <a href="javascript:%20void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-flip-horizontal"></i>
+                        <i class=" mdi mdi-newspaper"></i>
                         <span>اخبار</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

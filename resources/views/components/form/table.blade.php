@@ -21,10 +21,10 @@
                                 <td>{{$lang_state[$td["state"]]}}</td>
                                 <td>{{$lang_state[$td["state_main"]]}}</td>
                                 <td>{{$lang_state[$td["state_header"]]}}</td>
-                                <td class="d-flex justify-content-around">
-                                    <button class="btn btn-danger btn-sm"><a href="javascript:void(0)"><i class="mdi mdi-delete-alert-outline"></i></a></button>
-                                    <button class="btn btn-info btn-sm"><a href="javascript:void(0)"><i class="mdi mdi-movie-edit"></i></a></button>
-                                    <button class="btn btn-white btn-sm"><a href="javascript:void(0)"><i class="mdi mdi-movie-edit"></i></a></button>
+                                <td class="d-flex justify-content-center">
+                                    <button class="btn btn-danger btn-sm mx-1"><a href="javascript:void(0)"><i class="mdi mdi-delete-alert-outline"></i></a></button>
+                                    <button class="btn btn-info btn-sm mx-1"><a href="javascript:void(0)"><i class="mdi mdi-movie-edit"></i></a></button>
+                                    <button class="btn btn-dark btn-sm mx-1"><a href="javascript:void(0)"><i class=" mdi mdi-npm-variant-outline "></i></a></button>
                                 </td>
                             </tr>
                         @endforeach
