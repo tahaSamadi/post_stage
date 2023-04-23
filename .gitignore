@@ -12,6 +12,8 @@
 Homestead.json
 Homestead.yaml
 auth.json
+Caddyfile
+nohup.out
 npm-debug.log
 yarn-error.log
 /.fleet
