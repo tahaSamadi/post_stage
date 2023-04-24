@@ -1,6 +1,6 @@
 @props(['data'=>[],'edit_route'=>'','columns'=>[],'column_en'=>[]])
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-<div class="row">
+<div class="row" id="parent_data">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -47,7 +47,7 @@
     <script>
         $(document).ready(function () {
             delete_item('آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}');
-            table_ajax("{{route('news.cats.index')}}",'{{route('news.cats.delete')}}')
+            table_ajax("{{route('news.cats.index')}}",'آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}')
         })
     </script>
 @endsection

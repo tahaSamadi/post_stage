@@ -25,6 +25,7 @@ class news_cats_controller extends Controller
         $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header','slug']);
         if ($request->ajax()){
             $news_cats=news_cats::where('parent_id',$request->get('parent_id'))->get();
+            return view('components.form.table',['data'=>$news_cats,'edit_route'=>'news.cats.edit','columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'column_en'=>['title','News_Num','state','state_header','state_main']]);
         }
         return view($this->address_view.'index_news-cats',compact('news_cats'));
     }

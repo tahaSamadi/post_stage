@@ -194,7 +194,7 @@ function ajax_csrf(){
 }
 
 //sweet_alert
-function sweet_toaste(type,msg){
+function sweet_toast(type,msg){
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -238,9 +238,9 @@ function delete_item(msg,route_delete){
                     success:function (result) {
                         if(result === "success"){
                             $(tr_children).parent().parent().remove()
-                            sweet_toaste('success','آیتم حذف شد');
+                            sweet_toast('success','آیتم حذف شد');
                         }
-                        if($("#datatable tbody tr").length === '0'){
+                        if($("#datatable tbody tr").length == '0'){
                             $("#datatable").html("<div class='alert alert-danger text-left'>نتیجه ای یافت نشد</div>")
                         }
                     },
@@ -259,33 +259,30 @@ function delete_item(msg,route_delete){
     //Swal.fire('Saved!', '', 'success')
     //Swal.fire('Changes are not saved', '', 'info')
 }
-function table_ajax(url,url_delete){
+function table_ajax(url,msg,url_delete){
     ajax_csrf()
     $("[data-crud='show_child']").click(function (){
-        var parent_id=$(this).parent().attr("data-id")
-        var sub_cats_count=$(this).attr("data-subcats-count")
-        if(sub_cats_count != '0'){
-            $("#preloader,#status").css("display","block")
+        var sub_cats_no=$(this).attr('data-subcats-count');
+        if(sub_cats_no != "0"){
+            var parent_id=$(this).parent().attr("data-id")
             $.ajax({
                 url:url,
+                method: 'get',
                 data:{'parent_id':parent_id},
-                method:"GET",
-                dataType:"html",
+                dataType: "html",
                 success:function (result) {
-                    document.querySelector('html').innerHTML = result;
-                    table_ajax(url)
-                    delete_item('آیا شما اطمینان به حذف این ایتم دارید؟',url_delete)
+                    $("#parent_data").remove()
+                    $(".page-content .row").after(result)
+                    delete_item(msg,url_delete)
+                    table_ajax(url,msg,url_delete)
                 },
-                complete: function(){
-                    $("#preloader,#status").css("display","none")
-                },
-                error:function (){
+                error:function () {
                     alert("error to sending ajax data")
                 }
             })
         }
-        else{
-            sweet_toaste('error','زیر دسته بندی تعریف نشده است')
+        else {
+            sweet_toast('error','زیر دسته بندی تعریف نشده')
         }
     })
 }
