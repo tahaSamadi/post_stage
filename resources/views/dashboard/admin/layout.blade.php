@@ -25,7 +25,19 @@
 </head>
 
 <body data-layout="detached" data-topbar="colored">
-
+<!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner-chase">
+            <div class="chase-dot"></div>
+            <div class="chase-dot"></div>
+            <div class="chase-dot"></div>
+            <div class="chase-dot"></div>
+            <div class="chase-dot"></div>
+            <div class="chase-dot"></div>
+        </div>
+    </div>
+</div>
 
 
 <div class="container-fluid">
@@ -60,7 +72,8 @@
 <script src="/libs/simplebar/simplebar.min.js"></script>
 <script src="/libs/select2/js/select2.min.js"></script>
 <script src="/libs/node-waves/waves.min.js"></script>
-
+<script src="/libs/sweetalert/sweetalert.js"></script>
+@yield('extra_js')
 <!-- App js -->
 <script src="/js/app.js"></script>
 <script>

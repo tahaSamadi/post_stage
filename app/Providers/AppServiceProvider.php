@@ -21,14 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['dashboard.admin.module.news_cats.*'], function($view){
-            $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header']);
-            $view->with('news_cats',$news_cats);
-        });
-        View::composer(['components.form.table'],function ($view){
-            $lang_state[0]="عدم نمایش";
-            $lang_state[1]="نمایش";
-            $view->with('lang_state',$lang_state);
-        });
+//        View::composer(['dashboard.admin.module.news_cats.*'], function($view){
+//            $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header','slug']);
+//            $view->with('news_cats',$news_cats);
+//        });
     }
 }

@@ -185,3 +185,107 @@ File: Main Js File
 
 })(jQuery)
 
+function ajax_csrf(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+}
+
+//sweet_alert
+function sweet_toaste(type,msg){
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: type,
+        title: msg
+    })
+}
+
+
+
+function delete_item(msg,route_delete){
+    ajax_csrf()
+    $("[data-crud='delete']").click(function (){
+        var tr_children=this;
+        var id=$(this).parent().attr("data-id")
+        Swal.fire({
+            title: msg,
+            showDenyButton: false,
+            confirmButtonColor: '#dc3741',
+            showCancelButton: true,
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'حذف',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#preloader,#status").css("display","block")
+                $.ajax({
+                    url:route_delete,
+                    data:{'id':id},
+                    method:"POST",
+                    dataType:"JSON",
+                    success:function (result) {
+                        if(result === "success"){
+                            $(tr_children).parent().parent().remove()
+                            sweet_toaste('success','آیتم حذف شد');
+                        }
+                        if($("#datatable tbody tr").length === '0'){
+                            $("#datatable").html("<div class='alert alert-danger text-left'>نتیجه ای یافت نشد</div>")
+                        }
+                    },
+                    complete: function(){
+                        $("#preloader,#status").css("display","none")
+                    },
+                    error:function () {
+                        alert("error to sending ajax data")
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    })
+    //Swal.fire('Saved!', '', 'success')
+    //Swal.fire('Changes are not saved', '', 'info')
+}
+function table_ajax(url,url_delete){
+    ajax_csrf()
+    $("[data-crud='show_child']").click(function (){
+        var parent_id=$(this).parent().attr("data-id")
+        var sub_cats_count=$(this).attr("data-subcats-count")
+        if(sub_cats_count != '0'){
+            $("#preloader,#status").css("display","block")
+            $.ajax({
+                url:url,
+                data:{'parent_id':parent_id},
+                method:"GET",
+                dataType:"html",
+                success:function (result) {
+                    document.querySelector('html').innerHTML = result;
+                    table_ajax(url)
+                    delete_item('آیا شما اطمینان به حذف این ایتم دارید؟',url_delete)
+                },
+                complete: function(){
+                    $("#preloader,#status").css("display","none")
+                },
+                error:function (){
+                    alert("error to sending ajax data")
+                }
+            })
+        }
+        else{
+            sweet_toaste('error','زیر دسته بندی تعریف نشده است')
+        }
+    })
+}

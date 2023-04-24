@@ -36,7 +36,7 @@ class LangServiceProvider extends ServiceProvider
         View::composer('*', function($view){
             $crud_names=[
                 'create'=>'ایجاد',
-                'edit'=>'اخبار',
+                'edit'=>'ویرایش',
                 'index'=>'لیست',
             ];
             $view->with('crud_names',$crud_names);

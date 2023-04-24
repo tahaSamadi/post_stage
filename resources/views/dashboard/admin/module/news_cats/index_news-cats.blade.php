@@ -13,6 +13,6 @@
         </div>
     </div>
     <!-- end page title -->
-    @component('components.form.table',['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'data'=>$news_cats])@endcomponent
+    @component('components.form.table',['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'column_en'=>['title','News_Num','state','state_header','state_main'],'data'=>$news_cats,'edit_route'=>'news.cats.edit'])@endcomponent
 
 @endsection
