@@ -24,6 +24,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        if(env('FORCE_HTTPS',false)) { // Default value should be false for local server
+            resolve(\Illuminate\Routing\UrlGenerator::class)->forceScheme('https');
+            parent::boot();
+        }
+
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
