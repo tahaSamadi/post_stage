@@ -14,7 +14,7 @@ class news_cats_controller extends Controller
     protected string $address_view='dashboard.admin.module.news_cats.';
     //check app service provider if you don't understand news_cats concept
     public function create(){
-        $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header','slug']);
+        $news_cats=news_cats::where('parent_id',null)->get(['id','title','state','state_main','state_header','slug']);
         return view($this->address_view.'create_news-cats',compact('news_cats'));
     }
     public function store(news_cat_request $request){
@@ -22,7 +22,12 @@ class news_cats_controller extends Controller
         return back()->with(['success'=>'دسته بندی خبر ایجاد شد']);
     }
     public function index(Request $request){
-        $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header','slug']);
+        $news_cats=news_cats::where('parent_id',null)->get(['id','title','state','state_main','state_header','slug']);
+        if($request->get('parent_id')){
+            $news_cats=news_cats::where('id',$request->get('parent_id'))->get(['id','title','state','state_main','state_header','slug']);
+        }
+
+        //ajax data
         if ($request->ajax()){
             $news_cats=news_cats::where('parent_id',$request->get('parent_id'))->get();
             return view('components.form.table',['data'=>$news_cats,'edit_route'=>'news.cats.edit','columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'column_en'=>['title','News_Num','state','state_header','state_main']]);
@@ -30,15 +35,21 @@ class news_cats_controller extends Controller
         return view($this->address_view.'index_news-cats',compact('news_cats'));
     }
     public function edit(news_cats $news_cat){
-        $news_cats=news_cats::where('parent_id',null)->with('sub_cats')->get(['id','title','state','state_main','state_header','slug']);
+        $news_cats=news_cats::where('parent_id',null)->where('id','!=',$news_cat["id"])->get(['id','title','state','state_main','state_header','slug']);
         return view($this->address_view.'edit_news-cats',compact('news_cat','news_cats'));
     }
     public function update(edit_news_cat_request $request,news_cats $news_cat){
         $news_cat->update($request->all());
-        return redirect()->route('news.cats.edit',['news_cat'=>$request->slug]);
+        return redirect()->route('news.cats.edit',['news_cat'=>$request->slug])->with('success','تغییرات انجام شد');
     }
     public function delete(){
-        news_cats::destroy(request()->get('id'));
-        echo json_encode('success');
+        $news_cats=news_cats::find(request()->get('id'));
+        $redirect=route('news.cats.index');
+
+        if($news_cats["parent_id"]!==null){
+            $redirect=route('news.cats.index',['parent_id'=>$news_cats["parent_id"]]);
+        }
+        $news_cats->delete();
+        echo json_encode($redirect);
     }
 }

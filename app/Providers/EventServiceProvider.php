@@ -2,13 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\admin\news_cats;
+use App\Observers\news_cats_observer;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
-
 class EventServiceProvider extends ServiceProvider
 {
+//    protected $observers = [
+//         news_cats::class => [news_cats_observer::class],
+//    ];
     /**
      * The event to listener mappings for the application.
      *

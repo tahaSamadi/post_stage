@@ -5,10 +5,6 @@
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
                 <h4 class="page-title mb-0 font-size-18">{{ $crud_names[$module_crud_type['type']] }} {{__('modules_name.'.$module_crud_type['module'])}}</h4>
-                <div class="page-title-right">
-                    @include('dashboard.admin.layout.breadcrumb')
-                </div>
-
             </div>
         </div>
     </div>
@@ -18,6 +14,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+
                     @component('components.form.form',['action'=>route('news.cats.update',['news_cat'=>$news_cat->slug]),'method'=>'post'])
                         @slot('items')
                             @component('components.form.input',['id'=>'title','name'=>'title','label'=>'عنوان','value'=>$news_cat->title])@endcomponent

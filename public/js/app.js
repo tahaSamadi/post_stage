@@ -229,7 +229,6 @@ function delete_item(msg,route_delete){
             confirmButtonText: 'حذف',
         }).then((result) => {
             if (result.isConfirmed) {
-                $("#preloader,#status").css("display","block")
                 $.ajax({
                     url:route_delete,
                     data:{'id':id},
@@ -240,12 +239,11 @@ function delete_item(msg,route_delete){
                             $(tr_children).parent().parent().remove()
                             sweet_toast('success','آیتم حذف شد');
                         }
-                        if($("#datatable tbody tr").length == '0'){
-                            $("#datatable").html("<div class='alert alert-danger text-left'>نتیجه ای یافت نشد</div>")
-                        }
-                    },
-                    complete: function(){
-                        $("#preloader,#status").css("display","none")
+                        console.log(result)
+                        window.location=result
+                        // if($("#datatable tbody tr").length == '0'){
+                        //     $("#datatable").html("<div class='alert alert-danger text-left'>نتیجه ای یافت نشد</div>")
+                        // }
                     },
                     error:function () {
                         alert("error to sending ajax data")
@@ -263,7 +261,11 @@ function table_ajax(url,msg,url_delete){
     ajax_csrf()
     $("[data-crud='show_child']").click(function (){
         var sub_cats_no=$(this).attr('data-subcats-count');
-        if(sub_cats_no != "0"){
+        if(sub_cats_no == "0"){
+            sweet_toast('error','زیر دسته بندی تعریف نشده')
+        }
+        else {
+        $("#preloader,#status").css("display","block")
             var parent_id=$(this).parent().attr("data-id")
             $.ajax({
                 url:url,
@@ -276,13 +278,13 @@ function table_ajax(url,msg,url_delete){
                     delete_item(msg,url_delete)
                     table_ajax(url,msg,url_delete)
                 },
+                complete: function(){
+                    $("#preloader,#status").css("display","none")
+                },
                 error:function () {
                     alert("error to sending ajax data")
                 }
             })
-        }
-        else {
-            sweet_toast('error','زیر دسته بندی تعریف نشده')
         }
     })
 }
