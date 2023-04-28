@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8">
-    <title>داشبورد - قالب مدیریتی Qovex</title>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
     <meta content="Themesbrand" name="author">
@@ -73,9 +73,9 @@
 <script src="/libs/select2/js/select2.min.js"></script>
 <script src="/libs/node-waves/waves.min.js"></script>
 <script src="/libs/sweetalert/sweetalert.js"></script>
-@yield('extra_js')
 <!-- App js -->
 <script src="/js/app.js"></script>
+@yield('js')
 <script>
     $(".select2").select2();
 

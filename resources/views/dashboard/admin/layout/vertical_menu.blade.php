@@ -8,7 +8,7 @@
 
             <div class="mt-3">
 
-                <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h">طاها نیما</a>
+                <a href="#" class="text-dark font-weight-medium font-size-16 line-height-h">طاها </a>
                 <p class="text-body mt-1 mb-0 font-size-13">ادمین وبسایت</p>
 
             </div>
@@ -21,7 +21,7 @@
                 <li class="menu-title">منوها</li>
 
                 <li>
-                    <a href="javascript:%20void(0);" class="has-arrow waves-effect">
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
                         <i class=" mdi mdi-newspaper"></i>
                         <span>اخبار</span>
                     </a>

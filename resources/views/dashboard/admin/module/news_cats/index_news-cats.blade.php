@@ -1,4 +1,5 @@
 @extends('dashboard.admin.layout')
+
 @section('main_content')
     <!-- start page title -->
     <div class="row">
@@ -9,6 +10,16 @@
         </div>
     </div>
     <!-- end page title -->
+    @component('components.list.form_filter')@endcomponent
     @component('components.form.table',['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'column_en'=>['title','News_Num','state','state_header','state_main'],'data'=>$news_cats,'edit_route'=>'news.cats.edit'])@endcomponent
 
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function () {
+            delete_item('آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}');
+            table_ajax("{{route('news.cats.index')}}",'آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}')
+        })
+    </script>
 @endsection

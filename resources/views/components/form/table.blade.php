@@ -38,16 +38,8 @@
                     <div class="alert alert-danger">نتیجه ای یافت نشد</div>
                 @endif
                 </table>
+                {{$data->links()}}
             </div>
         </div>
     </div>
 </div>
-
-@section('extra_js')
-    <script>
-        $(document).ready(function () {
-            delete_item('آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}');
-            table_ajax("{{route('news.cats.index')}}",'آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}')
-        })
-    </script>
-@endsection
