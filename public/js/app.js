@@ -81,9 +81,10 @@ File: Main Js File
                 }
             }
         });
-        document.addEventListener('fullscreenchange', exitHandler );
+        document.addEventListener('fullscreenchange', exitHandler);
         document.addEventListener("webkitfullscreenchange", exitHandler);
         document.addEventListener("mozfullscreenchange", exitHandler);
+
         function exitHandler() {
             if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
                 console.log('pressed');
@@ -109,9 +110,9 @@ File: Main Js File
     }
 
     function initDropdownMenu() {
-        $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
             if (!$(this).next().hasClass('show')) {
-              $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+                $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
             }
             var $subMenu = $(this).next(".dropdown-menu");
             $subMenu.toggleClass('show');
@@ -131,7 +132,7 @@ File: Main Js File
     }
 
     function initPreloader() {
-        $(window).on('load', function() {
+        $(window).on('load', function () {
             $('#status').fadeOut();
             $('#preloader').delay(350).fadeOut('slow');
         });
@@ -144,25 +145,25 @@ File: Main Js File
                 sessionStorage.setItem("is_visited", "light-mode-switch");
             } else {
                 $(".right-bar input:checkbox").prop('checked', false);
-                $("#"+alreadyVisited).prop('checked', true);
+                $("#" + alreadyVisited).prop('checked', true);
                 updateThemeSetting(alreadyVisited);
             }
         }
-        $("#light-mode-switch, #dark-mode-switch").on("change", function(e) {
+        $("#light-mode-switch, #dark-mode-switch").on("change", function (e) {
             updateThemeSetting(e.target.id);
         });
     }
 
     function updateThemeSetting(id) {
-        if($("#light-mode-switch").prop("checked") == true && id === "light-mode-switch"){
+        if ($("#light-mode-switch").prop("checked") == true && id === "light-mode-switch") {
             $("#dark-mode-switch").prop("checked", false);
-            $("#bootstrap-style").attr('href','/css/bootstrap.min.css');
-            $("#app-style").attr('href','/css/app.css');
+            $("#bootstrap-style").attr('href', '/css/bootstrap.min.css');
+            $("#app-style").attr('href', '/css/app.css');
             sessionStorage.setItem("is_visited", "light-mode-switch");
-        } else if($("#dark-mode-switch").prop("checked") == true && id === "dark-mode-switch"){
+        } else if ($("#dark-mode-switch").prop("checked") == true && id === "dark-mode-switch") {
             $("#light-mode-switch").prop("checked", false);
-            $("#bootstrap-style").attr('href','/css/bootstrap-dark.min.css');
-            $("#app-style").attr('href','/css/app-dark.css');
+            $("#bootstrap-style").attr('href', '/css/bootstrap-dark.min.css');
+            $("#app-style").attr('href', '/css/app-dark.css');
             sessionStorage.setItem("is_visited", "dark-mode-switch");
         }
     }
@@ -185,7 +186,7 @@ File: Main Js File
 
 })(jQuery)
 
-function ajax_csrf(){
+function ajax_csrf() {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -194,7 +195,7 @@ function ajax_csrf(){
 }
 
 //sweet_alert
-function sweet_toast(type,msg){
+function sweet_toast(type, msg) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -214,12 +215,11 @@ function sweet_toast(type,msg){
 }
 
 
-
-function delete_item(msg,route_delete){
+function delete_item(msg, route_delete) {
     ajax_csrf()
-    $("[data-crud='delete']").click(function (){
-        var tr_children=this;
-        var id=$(this).parent().attr("data-id")
+    $("[data-crud='delete']").click(function () {
+        var tr_children = this;
+        var id = $(this).parent().attr("data-id")
         Swal.fire({
             title: msg,
             showDenyButton: false,
@@ -230,19 +230,19 @@ function delete_item(msg,route_delete){
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url:route_delete,
-                    data:{'id':id},
-                    method:"POST",
-                    dataType:"JSON",
-                    success:function (result) {
-                        if(result === "success"){
+                    url: route_delete,
+                    data: {'id': id},
+                    method: "POST",
+                    dataType: "JSON",
+                    success: function (result) {
+                        if (result === "success") {
                             $(tr_children).parent().parent().remove()
-                            sweet_toast('success','آیتم حذف شد');
+                            sweet_toast('success', 'آیتم حذف شد');
                         }
                         console.log(result)
-                        window.location=result
+                        window.location = result
                     },
-                    error:function () {
+                    error: function () {
                         alert("error to sending ajax data")
                     }
                 })
@@ -254,54 +254,80 @@ function delete_item(msg,route_delete){
     //Swal.fire('Saved!', '', 'success')
     //Swal.fire('Changes are not saved', '', 'info')
 }
-function table_ajax(url,msg,url_delete){
+
+function table_ajax(url, msg, url_delete) {
     ajax_csrf()
-    $("[data-crud='show_child']").click(function (){
-        var sub_cats_no=$(this).attr('data-subcats-count');
-        if(sub_cats_no == "0"){
-            sweet_toast('error','زیر دسته بندی تعریف نشده')
-        }
-        else {
-        $("#preloader,#status").css("display","block")
-            var parent_id=$(this).parent().attr("data-id")
+    $("[data-crud='show_child']").click(function () {
+        var sub_cats_no = $(this).attr('data-subcats-count');
+        if (sub_cats_no == "0") {
+            sweet_toast('error', 'زیر دسته بندی تعریف نشده')
+        } else {
+            $("#preloader,#status").css("display", "block")
+            var parent_id = $(this).parent().attr("data-id")
             $.ajax({
-                url:url,
+                url: url,
                 method: 'get',
-                data:{'parent_id':parent_id},
+                data: {'parent_id': parent_id},
                 dataType: "html",
-                success:function (result) {
+                success: function (result) {
                     $("#parent_data").remove()
                     $(".page-content .row").after(result)
-                    delete_item(msg,url_delete)
-                    table_ajax(url,msg,url_delete)
+                    delete_item(msg, url_delete)
+                    table_ajax(url, msg, url_delete)
                 },
-                complete: function(){
-                    $("#preloader,#status").css("display","none")
+                complete: function () {
+                    $("#preloader,#status").css("display", "none")
                 },
-                error:function () {
+                error: function () {
                     alert("error to sending ajax data")
                 }
             })
         }
     })
 }
-function getData(page,url,msg,url_delete) {
+
+function getData(page, url, msg, url_delete) {
     $.ajax({url: '?page=' + page, type: "get", datatype: "html"})
         .done(function (data) {
             $("#parent_data .col-12").empty().html(data);
             location.hash = page;
-            delete_item(msg,url_delete)
-            table_ajax(url,msg,url_delete)
+            $("#preloader,#status").css("display", "none")
+            delete_item(msg, url_delete)
+            table_ajax(url, msg, url_delete)
         })
         .fail(function (jqXHR, ajaxOptions, thrownError) {
         })
 }
-function ajaxPagination(url,msg,url_delete){
-    $(document).on('click', '.pagination a',function(event) {
+
+function ajaxPagination(url, msg, url_delete) {
+    $(document).on('click', '.pagination a', function (event) {
+        $("#preloader,#status").css("display", "block")
         event.preventDefault();
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
-        var myurl = $(this).attr('href');var page=$(this).attr('href').split('page=')[1];
-        getData(page,url,msg,url_delete);
+        var myurl = $(this).attr('href');
+        var page = $(this).attr('href').split('page=')[1];
+        getData(page, url, msg, url_delete);
     })
+}
+
+function search_ajax(url,params, msg, url_delete) {
+        $("#preloader,#status").css("display", "block")
+        $.ajax({
+            url: url,
+            method: 'get',
+            data: params,
+            datatype: 'json',
+            success: function (result) {
+                $("#parent_data .col-12").empty().html(result);
+                delete_item(msg, url_delete)
+                table_ajax(url, msg, url_delete)
+                ajaxPagination(url, msg, url_delete)
+                $("#preloader,#status").css("display", "none")
+
+            },
+            error: function () {
+                alert("error to sending ajax data")
+            }
+        })
 }
