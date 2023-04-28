@@ -11,15 +11,24 @@
     </div>
     <!-- end page title -->
     @component('components.list.form_filter')@endcomponent
-    @component('components.form.table',['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات'],'column_en'=>['title','News_Num','state','state_header','state_main'],'data'=>$news_cats,'edit_route'=>'news.cats.edit'])@endcomponent
+    @component('components.form.table',
+['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات']
+,'column_en'=>['title','News_Num','state','state_header','state_main']
+,'data'=>$news_cats,'edit_route'=>'news.cats.edit'])@endcomponent
 
 @endsection
 
 @section('js')
     <script>
         $(document).ready(function () {
-            delete_item('آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}');
-            table_ajax("{{route('news.cats.index')}}",'آیا شما اطمینان به حذف این ایتم دارید؟','{{route('news.cats.delete')}}')
+            var url_current_page="{{route('news.cats.index')}}";
+            var msg_delete='آیا شما اطمینان به حذف این ایتم دارید؟';
+            var route_delete='{{route('news.cats.delete')}}';
+            delete_item(msg_delete,route_delete);
+            table_ajax(url_current_page,msg_delete,route_delete)
+            ajaxPagination(url_current_page,msg_delete,route_delete)
         })
+
+
     </script>
 @endsection

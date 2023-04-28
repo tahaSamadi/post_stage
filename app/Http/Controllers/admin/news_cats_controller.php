@@ -26,16 +26,16 @@ class news_cats_controller extends Controller
 
         $news_cats=news_cats::where('parent_id',null)
             ->select(['id','title','state','state_main','state_header','slug'])
-            ->paginate(2);
+            ->paginate(1);
         if($request->get('parent_id')){
             $news_cats=news_cats::where('id',$request->get('parent_id'))
                 ->select(['id','title','state','state_main'
-                ,'state_header','slug'])->paginate(2);
+                ,'state_header','slug'])->paginate(1);
         }
 
         //ajax data
         if ($request->ajax()){
-            $news_cats=news_cats::where('parent_id',$request->get('parent_id'))->paginate(2);
+            $news_cats=news_cats::where('parent_id',$request->get('parent_id'))->paginate(1);
             return view('components.form.table',['data'=>$news_cats,'edit_route'=>'news.cats.edit'
                 ,'columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات']
                 ,'column_en'=>['title','News_Num','state','state_header','state_main']]);

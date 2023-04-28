@@ -241,9 +241,6 @@ function delete_item(msg,route_delete){
                         }
                         console.log(result)
                         window.location=result
-                        // if($("#datatable tbody tr").length == '0'){
-                        //     $("#datatable").html("<div class='alert alert-danger text-left'>نتیجه ای یافت نشد</div>")
-                        // }
                     },
                     error:function () {
                         alert("error to sending ajax data")
@@ -286,5 +283,25 @@ function table_ajax(url,msg,url_delete){
                 }
             })
         }
+    })
+}
+function getData(page,url,msg,url_delete) {
+    $.ajax({url: '?page=' + page, type: "get", datatype: "html"})
+        .done(function (data) {
+            $("#parent_data .col-12").empty().html(data);
+            location.hash = page;
+            delete_item(msg,url_delete)
+            table_ajax(url,msg,url_delete)
+        })
+        .fail(function (jqXHR, ajaxOptions, thrownError) {
+        })
+}
+function ajaxPagination(url,msg,url_delete){
+    $(document).on('click', '.pagination a',function(event) {
+        event.preventDefault();
+        $('li').removeClass('active');
+        $(this).parent('li').addClass('active');
+        var myurl = $(this).attr('href');var page=$(this).attr('href').split('page=')[1];
+        getData(page,url,msg,url_delete);
     })
 }
