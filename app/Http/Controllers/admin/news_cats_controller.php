@@ -8,6 +8,7 @@ use App\Http\Requests\admin\news_cat\news_cat_request;
 use App\Models\admin\news_cats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use PhpParser\Lexer\TokenEmulator\ReadonlyTokenEmulator;
 
 class news_cats_controller extends Controller
 {
@@ -33,11 +34,11 @@ class news_cats_controller extends Controller
 
         $news_cats = news_cats::where('parent_id', null)
             ->select(['id', 'title', 'state', 'state_main', 'state_header', 'slug'])
-            ->paginate(1);
+            ->paginate(5);
         if ($request->get('parent_id')) {
             $news_cats = news_cats::where('id', $request->get('parent_id'))
                 ->select(['id', 'title', 'state', 'state_main'
-                    , 'state_header', 'slug'])->paginate(1);
+                    , 'state_header', 'slug'])->paginate(5);
         }
 
         //ajax data
@@ -45,7 +46,7 @@ class news_cats_controller extends Controller
             $news_cats = news_cats::where('parent_id', $request->get('parent_id'))
                 ->filter($request->get('title'))
                 ->filtertype($request->get('parent_id'))
-                ->paginate(1);
+                ->paginate(5);
             return view('components.form.table', ['data' => $news_cats, 'edit_route' => 'news.cats.edit'
                 , 'columns' => ['عنوان', 'اخبار', 'نمایش', 'نمایش در صفحه اصلی', 'نمایش در منو بالا', 'عملیات']
                 , 'column_en' => ['title', 'News_Num', 'state', 'state_header', 'state_main']]);
@@ -78,5 +79,11 @@ class news_cats_controller extends Controller
         }
         $news_cats->delete();
         echo json_encode($redirect);
+    }
+
+    public function delete_all(Request $request)
+    {
+        news_cats::destroy($request->get('item_delete'));
+        echo json_encode('ایتم های انتخاب شده حذف شد');
     }
 }

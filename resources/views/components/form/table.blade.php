@@ -17,7 +17,7 @@
                     <tbody>
 
                         @foreach($data as $td)
-                            <tr>
+                            <tr id="{{$td["id"]}}">
                                 <td><input type="checkbox" name="item_id[]" value="{{$td["id"]}}" class="item"></td>
                                 @foreach($column_en as $column)
                                 <td>{{$td[$column]}}</td>
@@ -39,6 +39,9 @@
                 @endif
                 </table>
                 {{$data->links()}}
+            </div>
+            <div class="card-footer">
+                @component('components.form.button',['value'=>'حذف کلی','class'=>'btn btn-danger btn-sm','id'=>'delete_all'])@endcomponent
             </div>
         </div>
     </div>

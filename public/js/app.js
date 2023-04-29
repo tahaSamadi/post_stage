@@ -186,6 +186,12 @@ File: Main Js File
 
 })(jQuery)
 
+function check_all() {
+    $("#check_all").click(function () {
+        $('.item').not(this).prop('checked', this.checked);
+    });
+}
+
 function ajax_csrf() {
     $.ajaxSetup({
         headers: {
@@ -195,6 +201,16 @@ function ajax_csrf() {
 }
 
 //sweet_alert
+function block_loading() {
+    $("#preloader,#status").css("display", "block")
+
+}
+
+function none_loading() {
+    $("#preloader,#status").css("display", "none")
+
+}
+
 function sweet_toast(type, msg) {
     const Toast = Swal.mixin({
         toast: true,
@@ -238,6 +254,7 @@ function delete_item(msg, route_delete) {
                         if (result === "success") {
                             $(tr_children).parent().parent().remove()
                             sweet_toast('success', 'آیتم حذف شد');
+                            check_all()
                         }
                         console.log(result)
                         window.location = result
@@ -262,7 +279,7 @@ function table_ajax(url, msg, url_delete) {
         if (sub_cats_no == "0") {
             sweet_toast('error', 'زیر دسته بندی تعریف نشده')
         } else {
-            $("#preloader,#status").css("display", "block")
+            block_loading()
             var parent_id = $(this).parent().attr("data-id")
             $.ajax({
                 url: url,
@@ -270,13 +287,16 @@ function table_ajax(url, msg, url_delete) {
                 data: {'parent_id': parent_id},
                 dataType: "html",
                 success: function (result) {
+                    console.log(result)
+
                     $("#parent_data").remove()
                     $(".page-content .row").after(result)
                     delete_item(msg, url_delete)
-                    table_ajax(url, msg, url_delete)
+                    check_all()
+                    console.log(result)
                 },
                 complete: function () {
-                    $("#preloader,#status").css("display", "none")
+                    none_loading()
                 },
                 error: function () {
                     alert("error to sending ajax data")
@@ -291,17 +311,19 @@ function getData(page, url, msg, url_delete) {
         .done(function (data) {
             $("#parent_data .col-12").empty().html(data);
             location.hash = page;
-            $("#preloader,#status").css("display", "none")
+            none_loading()
             delete_item(msg, url_delete)
             table_ajax(url, msg, url_delete)
+            check_all()
         })
         .fail(function (jqXHR, ajaxOptions, thrownError) {
+
         })
 }
 
 function ajaxPagination(url, msg, url_delete) {
     $(document).on('click', '.pagination a', function (event) {
-        $("#preloader,#status").css("display", "block")
+        block_loading()
         event.preventDefault();
         $('li').removeClass('active');
         $(this).parent('li').addClass('active');
@@ -311,23 +333,75 @@ function ajaxPagination(url, msg, url_delete) {
     })
 }
 
-function search_ajax(url,params, msg, url_delete) {
-        $("#preloader,#status").css("display", "block")
-        $.ajax({
-            url: url,
-            method: 'get',
-            data: params,
-            datatype: 'json',
-            success: function (result) {
-                $("#parent_data .col-12").empty().html(result);
-                delete_item(msg, url_delete)
-                table_ajax(url, msg, url_delete)
-                ajaxPagination(url, msg, url_delete)
-                $("#preloader,#status").css("display", "none")
+function search_ajax(url, params, msg, url_delete) {
+    block_loading()
+    $.ajax({
+        url: url,
+        method: 'get',
+        data: params,
+        datatype: 'json',
+        success: function (result) {
+            $("#parent_data .col-12").empty().html(result);
+            check_all()
+            delete_item(msg, url_delete)
+            table_ajax(url, msg, url_delete)
+            ajaxPagination(url, msg, url_delete)
+            none_loading()
 
-            },
-            error: function () {
-                alert("error to sending ajax data")
+        },
+        error: function () {
+            alert("error to sending ajax data")
+        }
+    })
+}
+
+function delete_all(question, route_delete_,url, msg, url_delete) {
+    $("#delete_all").click(function () {
+        Swal.fire({
+            title: question,
+            showDenyButton: false,
+            confirmButtonColor: '#dc3741',
+            showCancelButton: true,
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'حذف',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var item_delete = [];
+                $(".item:checked").each(function (index, element) {
+                    item_delete.push($(this).val())
+                })
+
+                if(!$(item_delete).length == '0'){
+                    $.ajax({
+                        url: route_delete_,
+                        method: "post",
+                        data: {'item_delete': item_delete},
+                        dataType: "json",
+                        success: function (result) {
+                            sweet_toast('success',result)
+                            check_all()
+                            delete_item(msg, url_delete)
+                            table_ajax(url, msg, url_delete)
+                            ajaxPagination(url, msg, url_delete)
+                            none_loading()
+                            $(item_delete).each(function (index,element) {
+                                $("#"+element).remove()
+                            })
+                            if($("#datatable tbody tr").length == '0'){
+                                $("#parent_data table").remove()
+                                $("#parent_data .card-body").append("<div class='alert alert-danger'>نتیجه ای یافت نشد</div>")
+                            }
+                        },
+                        error: function () {
+                            alert("error to sending ajax data")
+                        }
+                    })
+                }
+                else{
+                    sweet_toast('error', 'موردی انتخاب نشده')
+
+                }
             }
         })
+    })
 }

@@ -82,9 +82,7 @@
     $(".select2-limiting").select2({
         maximumSelectionLength: 2
     });
-    $("#check_all").click(function(){
-        $('.item').not(this).prop('checked', this.checked);
-    });
+
 </script>
 </body>
 

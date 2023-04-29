@@ -16,3 +16,5 @@ Route::post('/news/cats/update/{news_cat:slug}', [\App\Http\Controllers\admin\ne
     ->name('news.cats.update');
 Route::post('/news/cats/delete', [\App\Http\Controllers\admin\news_cats_controller::class, 'delete'])
     ->name('news.cats.delete');
+Route::post('/news/cats/delete_all',[\App\Http\Controllers\admin\news_cats_controller::class,'delete_all'])
+    ->name('news.cats.delete_all');

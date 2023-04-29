@@ -27,19 +27,20 @@
     <script>
         $(document).ready(function () {
             var url_current_page = "{{route('news.cats.index')}}";
+            var url_delete_all="{{route('news.cats.delete_all')}}"
             var msg_delete = 'آیا شما اطمینان به حذف این ایتم دارید؟';
             var route_delete = '{{route('news.cats.delete')}}';
+            check_all()
             delete_item(msg_delete, route_delete);
             table_ajax(url_current_page, msg_delete, route_delete)
             ajaxPagination(url_current_page, msg_delete, route_delete)
-
+            delete_all(msg_delete,url_delete_all,url_current_page, msg_delete, route_delete)
             $("#filter #filter_button").click(function (e) {
                 e.preventDefault()
                 var title=$("[name='title']").val() ?? '';
                 var parent_id=$("[name='parent_id']").val() ?? '';
                 var params={'title':title,'parent_id':parent_id}
                 search_ajax(url_current_page,params,msg_delete,route_delete)
-
             })
         })
 
