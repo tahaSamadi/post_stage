@@ -86,4 +86,11 @@ class news_cats_controller extends Controller
         news_cats::destroy($request->get('item_delete'));
         echo json_encode('ایتم های انتخاب شده حذف شد');
     }
+
+    public function change_status(Request $request){
+        $column_name=$request->get('column_name');
+        $items_id=$request->get('item_status');
+        (new news_cats())->news_cats_change_state($column_name,$items_id);
+        echo json_encode('تغییر انجام شد');
+    }
 }

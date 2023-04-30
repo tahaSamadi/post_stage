@@ -405,3 +405,34 @@ function delete_all(question, route_delete_,url, msg, url_delete) {
         })
     })
 }
+function change_status(route_status,question, route_delete_,url, msg, url_delete){
+    $(".change_state").click(function () {
+        var column_name=$(this).attr('data-column')
+        var item_status = [];
+        $(".item:checked").each(function (index, element) {
+            item_status.push($(this).val())
+        })
+
+        if(!$(item_status).length == '0'){
+            block_loading()
+            $.ajax({
+                url: route_status,
+                method: "post",
+                data: {'item_status': item_status,'column_name':column_name},
+                dataType: "json",
+                success: function (result) {
+                    sweet_toast('success',result);
+                    delete_all(question, route_delete_,url, msg, url_delete)
+                    none_loading();
+                },
+                error: function () {
+                    alert("error to sending ajax data")
+                }
+            })
+        }
+        else{
+            sweet_toast('error', 'موردی انتخاب نشده')
+
+        }
+    })
+}

@@ -41,5 +41,12 @@ class LangServiceProvider extends ServiceProvider
             ];
             $view->with('crud_names',$crud_names);
         });
+        View::composer('*', function($view){
+            $lang_state=[
+                0=>'عدم نمایش',
+                1=>'نمایش',
+            ];
+            $view->with('lang_state',$lang_state);
+        });
     }
 }

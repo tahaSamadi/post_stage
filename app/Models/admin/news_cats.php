@@ -9,36 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class news_cats extends Model
 {
     use HasFactory;
-
-    protected array $lang_state = [];
-
-    public function __construct()
-    {
-        $this->lang_state[0] = 'عدم نمایش';
-        $this->lang_state[1] = 'نمایش';
-    }
-
-    protected $fillable = ['title', 'slug', 'description', 'parent_id'];
+    protected $fillable = ['title', 'slug', 'description', 'parent_id','state'];
 
     public function sub_cats()
     {
         return $this->hasMany(news_cats::class, 'parent_id');
     }
 
-    public function getStateAttribute($value)
-    {
-        return $this->lang_state[$value];
-    }
-
-    public function getStateHeaderAttribute($value)
-    {
-        return $this->lang_state[$value];
-    }
-
-    public function getStateMainAttribute($value)
-    {
-        return $this->lang_state[$value];
-    }
 
     public function scopeFilter(Builder $builder,$title)
     {
@@ -52,5 +29,17 @@ class news_cats extends Model
             $builder->where('parent_id',$parent_id);
         }
         return $builder;
+    }
+    public function news_cats_change_state(string $column_name,$items_id){
+
+        foreach ($items_id as $id) {
+            $news_cat = news_cats::find($id);
+            if($news_cat->state=='1'){
+                $news_cat->update([$column_name=>'0']);
+            }
+            else{
+                $news_cat->update([$column_name=>'1']);
+            }
+        }
     }
 }
