@@ -8,7 +8,7 @@
     <meta content="Themesbrand" name="author">
     <!-- App favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico">
-
+    <link href="/libs/summernote/summernote-bs4.min.css" rel="stylesheet" type="text/css">
     <!-- jquery.vectormap css -->
     <link href="/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css">
 
@@ -19,6 +19,7 @@
     <!-- App Css -->
     <link href="/css/app.css" id="app-style" rel="stylesheet" type="text/css">
     <!-- Theme Color -->
+    <link rel="stylesheet" href="/libs/tagify/tagify.css">
     <link href="/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
     <meta name="theme-color" content="#283D92">
 
@@ -72,6 +73,10 @@
 <script src="/libs/simplebar/simplebar.min.js"></script>
 <script src="/libs/select2/js/select2.min.js"></script>
 <script src="/libs/node-waves/waves.min.js"></script>
+<script src="/libs/tagify/tags.js"></script>
+<script src="/libs/tagify/tags.js_2"></script>
+<script src="/libs/summernote/summernote-bs4.min.js"></script>
+<script src="/libs/summernote/lang/summernote-fa-IR.min.js"></script>
 <script src="/libs/sweetalert/sweetalert.js"></script>
 <!-- App js -->
 <script src="/js/app.js"></script>
@@ -82,7 +87,6 @@
     $(".select2-limiting").select2({
         maximumSelectionLength: 2
     });
-
 </script>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\news_cats_controller;
+use App\Http\Controllers\admin\news_controller;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,3 +22,8 @@ Route::post('/news/cats/delete_all',[news_cats_controller::class,'delete_all'])
     ->name('news.cats.delete_all');
 Route::post('/news/cats/change_status',[news_cats_controller::class,'change_status'])
     ->name('news.cats.change_status');
+
+//news_routes
+Route::get('/news/create',[news_controller::class,'create'])->name('news.create');
+Route::post('/news/create', [news_controller::class, 'store'])
+    ->name('news.store');
