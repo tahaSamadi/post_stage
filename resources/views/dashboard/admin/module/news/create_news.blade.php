@@ -21,12 +21,20 @@
                         @slot('items')
                             @component('components.form.input',['label'=>'عنوان','id'=>'title'
 ,'name'=>'title','value'=>old('title')])@endcomponent
+                            @component('components.form.input',['id'=>'slug','name'=>'slug'
+,'label'=>'اسلاگ','value'=>old('slug')])@endcomponent
                             @component('components.form.textarea',['label'=>'متن کوتاه','id'=>'short_note'
 ,'name'=>'short_note','value'=>old('short_note')])@endcomponent
-                            @component('components.form.tags_input',['label'=>'کلمه کلیدی','name'=>'tags','value'=>old('tags')])@endcomponent
-                            @component('components.form.upload_file',['label'=>'تصاویر','id'=>'pic','name'=>'pic'])@endcomponent
-                            @component('components.form.advance_summernote',['id'=>'long_note','name'=>'long_note'
-,'label'=>'متن بلند','value'=>old('long_note')])@endcomponent
+                            @component('components.form.tags_input'
+,['label'=>'کلمه کلیدی','name'=>'tags','value'=>old('tags')])@endcomponent
+                            @component('components.form.upload_file'
+,['label'=>'تصاویر','id'=>'pic','name'=>'pic'])@endcomponent
+                            @component('components.form.select2',['name'=>'cat_id','options'=>$news_cats,
+'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی',
+'sub_method'=>'sub_cats','value'=>old('cat_id')])@endcomponent
+                            @component('components.form.advance_summernote',['id'=>'description','name'=>'description'
+,'label'=>'متن بلند','value'=>old('description')])@endcomponent
+
                             @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
                         @endslot
                     @endcomponent

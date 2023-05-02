@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('description');
+            $table->longText('description');
+            $table->text('short_note');
+            $table->text('tags');
             $table->bigInteger('cat_id')->unsigned()->nullable();
             $table->foreign('cat_id')->on('news_cats')->references('id')->onDelete('set null');
             $table->integer('state')->default(1);
@@ -31,6 +33,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('news', function (Blueprint $table) {
+            $table->dropForeign(['cat_id']);
+        });
+        Schema::dropIfExists('news');
     }
 };

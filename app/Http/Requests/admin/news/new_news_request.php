@@ -26,7 +26,8 @@ class new_news_request extends FormRequest
             'short_note'=>['required','string','max:280'],
             'tags'=>['required'],
             'pic'=>['required','mimes:jpg,png,webp,jpeg,gif','max:2048'],
-            'long_note'=>['required']
+            'description'=>['required'],
+            'slug'=>['required']
         ];
     }
     protected function passedValidation():void
