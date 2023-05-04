@@ -9,41 +9,56 @@
             </div>
         </div>
     </div>
-    <!-- end page title -->
-    @component('components.list.form_filter')
-        @slot('extra_filter')
-            @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats_without_paginate,
-            'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی', 'sub_method'=>'sub_cats','value'=>''])@endcomponent
-        @endslot
-    @endcomponent
-    @component('components.form.table',
-['columns'=>['عنوان','اخبار','نمایش','نمایش در صفحه اصلی','نمایش در منو بالا','عملیات']
-,'column_en'=>['title','News_Num','state','state_header','state_main']
-,'data'=>$news_cats,'edit_route'=>'news.cats.edit'])
-@endcomponent
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    @if(isset($news_cats[0]))
+                    <table class="table table-striped table-bordered mb-0 text-center">
+
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="check_all"></th>
+                            <th>عنوان</th>
+                            <th>وضعیت</th>
+                            <th>نمایش در صفحه اصلی</th>
+                            <th>نمایش در منو بالا</th>
+                            <th>عملیات</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($news_cats as $news_cat)
+                        <tr>
+                            <th scope="row"><input type="checkbox" name="item" value="{{$news_cat['id']}}"></th>
+                            <td>{{$news_cat['title']}}</td>
+                            <td>{{$lang_state[$news_cat['state']]}}</td>
+                            <td>{{$lang_state[$news_cat['state_main']]}}</td>
+                            <td>{{$lang_state[$news_cat['state_header']]}}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm"><a
+                                        href="javascript:void(0)" data-href=""><i class="mdi mdi-delete-alert-outline"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm position-relative">
+                                    <a href="{{route('news.cats.edit',['news_cat'=>$news_cat['slug']])}}"><i class="bx bx-pencil"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-dark btn-sm position-relative" >
+                                    <a href="javascript:void(0)"><i class=" mdi mdi-npm-variant-outline "></i></a>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    @else
+                        <div class="alert alert-danger">نتیجه ای یافت نشد</div>
+                    @endif
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
-@section('js')
-    <script>
-        $(document).ready(function () {
-            var url_current_page = "{{route('news.cats.index')}}";
-            var url_delete_all="{{route('news.cats.delete_all')}}"
-            var msg_delete = 'آیا شما اطمینان به حذف این ایتم دارید؟';
-            var route_delete = '{{route('news.cats.delete')}}';
-            check_all()
-            delete_item(msg_delete, route_delete);
-            table_ajax(url_current_page, msg_delete, route_delete)
-            ajaxPagination(url_current_page, msg_delete, route_delete)
-            delete_all(msg_delete,url_delete_all,url_current_page, msg_delete, route_delete)
-            $("#filter #filter_button").click(function (e) {
-                e.preventDefault()
-                var title=$("[name='title']").val() ?? '';
-                var parent_id=$("[name='parent_id']").val() ?? '';
-                var params={'title':title,'parent_id':parent_id}
-                search_ajax(url_current_page,params,msg_delete,route_delete)
-            })
-        })
-
-    </script>
-@endsection

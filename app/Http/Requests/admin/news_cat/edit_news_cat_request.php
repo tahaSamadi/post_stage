@@ -10,7 +10,7 @@ class edit_news_cat_request extends news_cat_request
     public function rules(): array
     {
         return array_merge(parent::rules(), [
-            'slug' => ['required',Rule::unique('news_cats','slug')->ignore($this->news_cat)],
+            'title' => ['required',Rule::unique('news_cats','title')->ignore($this->news_cat)],
         ]);
     }
 }

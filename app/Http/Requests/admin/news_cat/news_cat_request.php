@@ -4,6 +4,7 @@ namespace App\Http\Requests\admin\news_cat;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class news_cat_request extends FormRequest
 {
@@ -23,15 +24,8 @@ class news_cat_request extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required'],
+            'title'=>['required',Rule::unique('news_cats','title')],
             'description'=>['required'],
-            'slug'=>['unique:news_cats','required']
         ];
-    }
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'slug'=>Str::slug($this->slug),
-        ]);
     }
 }

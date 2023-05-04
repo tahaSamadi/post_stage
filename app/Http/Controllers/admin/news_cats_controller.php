@@ -40,17 +40,6 @@ class news_cats_controller extends Controller
                 ->select(['id', 'title', 'state', 'state_main'
                     , 'state_header', 'slug'])->paginate(5);
         }
-
-        //ajax data
-        if ($request->ajax()) {
-            $news_cats = news_cats::where('parent_id', $request->get('parent_id'))
-                ->filter($request->get('title'))
-                ->filtertype($request->get('parent_id'))
-                ->paginate(5);
-            return view('components.form.table', ['data' => $news_cats, 'edit_route' => 'news.cats.edit'
-                , 'columns' => ['عنوان', 'اخبار', 'نمایش', 'نمایش در صفحه اصلی', 'نمایش در منو بالا', 'عملیات']
-                , 'column_en' => ['title', 'News_Num', 'state', 'state_header', 'state_main']]);
-        }
         return view($this->address_view . 'index_news-cats'
             , compact('news_cats', 'news_cats_without_paginate'));
     }
@@ -65,8 +54,7 @@ class news_cats_controller extends Controller
     public function update(edit_news_cat_request $request, news_cats $news_cat)
     {
         $news_cat->update($request->all());
-        return redirect()
-            ->route('news.cats.edit', ['news_cat' => $request->slug])->with('success', 'تغییرات انجام شد');
+        return back()->with('success', 'تغییرات انجام شد');
     }
 
     public function delete()
