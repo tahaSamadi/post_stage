@@ -27,3 +27,4 @@ Route::post('/news/cats/change_status',[news_cats_controller::class,'change_stat
 Route::get('/news/create',[news_controller::class,'create'])->name('news.create');
 Route::post('/news/create', [news_controller::class, 'store'])
     ->name('news.store');
+Route::get('/news',[news_controller::class,'index'])->name('news.index');

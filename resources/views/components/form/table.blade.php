@@ -32,13 +32,13 @@
                                             href="javascript:void(0)"><i class="mdi mdi-delete-alert-outline"></i></a>
                                     </button>
                                     <button class="btn btn-info btn-sm mx-1"><a
-                                            href="{{route($edit_route,['news_cat'=>$td["slug"]])}}"><i
+                                           @if(\Illuminate\Support\Facades\Route::has($edit_route)) href="{{route($edit_route,['news_cat'=>$td["slug"]])}}"  @endif><i
                                                 class="mdi mdi-movie-edit"></i></a></button>
                                     <button type="button" class="btn btn-dark position-relative" data-crud="show_child"
                                             data-subcats-count="{{$td->sub_cats()->count()}}">
                                         <a href="javascript:void(0)"><i class=" mdi mdi-npm-variant-outline "></i></a>
-                                        <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{$td->sub_cats()->count()}}</span>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{$td->sub_cats()->count()}}</span>
                                     </button>
                                 </td>
                             </tr>

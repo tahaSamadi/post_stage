@@ -4,12 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\news\new_news_request;
-use App\Http\Requests\admin\news_cat\news_cat_request;
+use App\Models\admin\news;
 use App\Models\admin\news_cats;
-use App\Models\news;
 use App\Services\resize_save_image\resize_image;
-use Buglinjo\LaravelWebp\Webp;
-use Illuminate\Http\Request;
 
 class news_controller extends Controller
 {
@@ -28,5 +25,9 @@ class news_controller extends Controller
         ]);
         news::create($data);
         return back()->with('success','خبر با موفقیت ساخته شد');
+    }
+    public function index(){
+        $news=news::where('state','1')->paginate(1);
+        return view('dashboard.admin.module.news.index_news',compact('news'));
     }
 }

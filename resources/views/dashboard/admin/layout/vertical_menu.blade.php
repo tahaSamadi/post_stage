@@ -29,7 +29,7 @@
                         <li><a href="{{route('news.cats.create')}}">ایجاد دسته بندی اخبار</a></li>
                         <li><a href="{{route('news.cats.index')}}">لیست دسته بندی اخبار</a></li>
                         <li><a href="{{route('news.create')}}">ایجاد اخبار</a></li>
-                        <li><a href="javascript:void(0)">لیست اخبار</a></li>
+                        <li><a href="{{route('news.index')}}">لیست اخبار</a></li>
                     </ul>
                 </li>
 
