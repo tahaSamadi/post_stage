@@ -45,6 +45,8 @@
                                 </button>
                                 <button type="button" class="btn btn-dark btn-sm position-relative" >
                                     <a href="javascript:void(0)"><i class=" mdi mdi-npm-variant-outline "></i></a>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{$news_cat->sub_cats()->count()}}</span>
                                 </button>
                             </td>
                         </tr>

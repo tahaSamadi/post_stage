@@ -38,4 +38,7 @@ class news_cats extends Model
         }
         return $builder;
     }
+    public function sub_cats(){
+        return $this->hasMany(news_cats::class,'parent_id');
+    }
 }
