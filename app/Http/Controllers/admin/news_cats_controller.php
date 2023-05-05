@@ -8,6 +8,7 @@ use App\Http\Requests\admin\news_cat\news_cat_request;
 use App\Models\admin\news_cats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 use PhpParser\Lexer\TokenEmulator\ReadonlyTokenEmulator;
 
 class news_cats_controller extends Controller
@@ -29,19 +30,16 @@ class news_cats_controller extends Controller
 
     public function index(Request $request)
     {
-        $news_cats_without_paginate = news_cats::where('parent_id', null)
-            ->select(['id', 'title', 'state', 'state_main', 'state_header', 'slug'])->get();
-
         $news_cats = news_cats::where('parent_id', null)
             ->select(['id', 'title', 'state', 'state_main', 'state_header', 'slug'])
             ->paginate(5);
         if ($request->get('parent_id')) {
-            $news_cats = news_cats::where('id', $request->get('parent_id'))
+            $news_cats = news_cats::where('parent_id', $request->get('parent_id'))
                 ->select(['id', 'title', 'state', 'state_main'
                     , 'state_header', 'slug'])->paginate(5);
         }
         return view($this->address_view . 'index_news-cats'
-            , compact('news_cats', 'news_cats_without_paginate'));
+            , compact('news_cats'));
     }
 
     public function edit(news_cats $news_cat)
@@ -60,25 +58,20 @@ class news_cats_controller extends Controller
     public function delete()
     {
         $news_cats = news_cats::find(request()->get('id'));
+        Session::flash('success','ایتم با موفقیت حذف شد');
         $redirect = route('news.cats.index');
-
         if ($news_cats["parent_id"] !== null) {
+            Session::flash('success','ایتم با موفقیت حذف شد');
             $redirect = route('news.cats.index', ['parent_id' => $news_cats["parent_id"]]);
         }
         $news_cats->delete();
-        echo json_encode($redirect);
+        return response()->json($redirect);
     }
 
-    public function delete_all(Request $request)
-    {
-        news_cats::destroy($request->get('item_delete'));
-        echo json_encode('ایتم های انتخاب شده حذف شد');
-    }
 
-    public function change_status(Request $request){
-        $column_name=$request->get('column_name');
-        $items_id=$request->get('item_status');
-        (new news_cats())->news_cats_change_state($column_name,$items_id);
-        echo json_encode('تغییر انجام شد');
+
+    public function change_states_or_delete(Request $request){
+        $params= $request->all();
+        return (new news_cats())->crud($params);
     }
 }

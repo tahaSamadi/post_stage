@@ -229,4 +229,51 @@ function sweet_toast(type, msg) {
         title: msg
     })
 }
-
+function delete_item(msg) {
+    ajax_csrf()
+    $("[data-delete]").click(function () {
+        var id = $(this).parent().attr("data-id")
+        Swal.fire({
+            title: msg,
+            showDenyButton: false,
+            confirmButtonColor: '#dc3741',
+            showCancelButton: true,
+            cancelButtonText: 'انصراف',
+            confirmButtonText: 'حذف',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var route_delete=$(this).attr('data-delete')
+                $.ajax({
+                    url: route_delete,
+                    method: "POST",
+                    dataType: "JSON",
+                    success: function (result) {
+                        console.log(result)
+                        window.location = result
+                    },
+                    error: function () {
+                        alert("error to sending ajax data")
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    })
+    //Swal.fire('Saved!', '', 'success')
+    //Swal.fire('Changes are not saved', '', 'info')
+}
+function check_all(){
+    $('#check_all').click(function(event) {
+        if(this.checked) {
+            // Iterate each checkbox
+            $('.item').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $('.item').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+}

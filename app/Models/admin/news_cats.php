@@ -41,4 +41,11 @@ class news_cats extends Model
     public function sub_cats(){
         return $this->hasMany(news_cats::class,'parent_id');
     }
+
+    public function crud(array $crud){
+        return $crud;
+//        $class_name=__CLASS__;
+//        $class_current=(new $class_name);
+//        return $class_current->all();
+    }
 }
