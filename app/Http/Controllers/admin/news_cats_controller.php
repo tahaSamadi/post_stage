@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\news_cat\edit_news_cat_request;
 use App\Http\Requests\admin\news_cat\news_cat_request;
+use App\Models\admin\news;
 use App\Models\admin\news_cats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;

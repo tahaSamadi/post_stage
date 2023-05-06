@@ -15,7 +15,16 @@
         <div class="col-12">
             <div class="card">
                 <form action="{{route('change.state.or.delete')}}" method="get">
-                    <div class="card-header"></div>
+                    <div class="card-header">
+                        @if(\Illuminate\Support\Facades\Session::has('success') || \Illuminate\Support\Facades\Session::has('error'))
+                            @if(\Illuminate\Support\Facades\Session::has('success'))
+                                <div class="alert alert-success">{{\Illuminate\Support\Facades\Session::get('success')}}</div>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Session::has('error'))
+                                 <div class="alert alert-danger">{{\Illuminate\Support\Facades\Session::get('error')}}</div>
+                            @endif
+                        @endif
+                    </div>
                     <div class="card-body">
 
                         @if(isset($news_cats[0]))
@@ -68,37 +77,38 @@
                     <div class="card-footer">
                         <div class="d-flex">
                             <div class="mx-2">
-                                <button class="btn btn-danger btn-sm" type="submit" name="delete_all" value="1">حذف کلی</button>
+                                <button class="btn btn-danger btn-sm" type="submit" name="crud" value="delete_all">حذف کلی</button>
                             </div>
                             <div class="mx-2">
-                                <button class="btn btn-primary btn-sm" type="submit" name="change_status" value="change_status">تغییر وضعیت
+                                <button class="btn btn-primary btn-sm" type="submit" name="crud" value="change_status">تغییر وضعیت
                                 </button>
                             </div>
                         </div>
                         <div class="d-flex mt-4">
                             <div class="col-6 d-flex">
                                 <div class="btn-parent mr-2">
-                                    <div class="btn btn-primary btn-sm mx-3">تغییر وضعیت در صفحه اصلی</div>
+                                    <button type="submit" name="crud" value="change_state_main"
+                                            class="btn btn-primary btn-sm mx-3">تغییر وضعیت در صفحه اصلی</button>
                                 </div>
                                 [
-                                <label for="" class="mx-2">نمایش
+                                <label for="change_state_main" class="mx-2">نمایش
                                      <input type="radio" id="change_state_main" name="change_state_main" value="1">
                                 </label>
-                                <label for="" class="mx-2">عدم نمایش
+                                <label for=change_state_main"" class="mx-2">عدم نمایش
                                     <input type="radio" id="change_state_main" name="change_state_main" value="0">
                                 </label>
                                 ]
                             </div>
                             <div class="col-6 d-flex">
                                 <div class="btn-parent mr-2">
-                                    <button class="btn btn-primary btn-sm mx-3" type="submit" name="change_value_menu"
-                                            value="change_value_menu">تغییر وضعیت در بالای صفحه</button>
+                                    <button class="btn btn-primary btn-sm mx-3" type="submit" name="crud"
+                                            value="change_state_header">تغییر وضعیت در بالای صفحه</button>
                                 </div>
                                 [
-                                <label for="" class="mx-2">نمایش
+                                <label for="change_state_header" class="mx-2">نمایش
                                     <input type="radio" id="change_state_header" name="change_state_header" value="1">
                                 </label>
-                                <label for="" class="mx-2">عدم نمایش
+                                <label for="change_state_header" class="mx-2">عدم نمایش
                                     <input type="radio" id="change_state_header" name="change_state_header" value="0">
                                 </label>
                                 ]

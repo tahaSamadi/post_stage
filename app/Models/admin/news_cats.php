@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\admin\crud\crud;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,8 +12,7 @@ class news_cats extends Model
 {
     use HasFactory,Sluggable;
 
-    protected $fillable = ['title', 'slug', 'description', 'parent_id', 'state'];
-
+    protected $fillable=['title','slug','description','parent_id','state','state_main','state_header'];
     public function sluggable(): array
     {
         return [
@@ -42,10 +42,11 @@ class news_cats extends Model
         return $this->hasMany(news_cats::class,'parent_id');
     }
 
-    public function crud(array $crud){
-        return $crud;
-//        $class_name=__CLASS__;
-//        $class_current=(new $class_name);
-//        return $class_current->all();
+    public function crud(array $params)
+    {
+        $class_name=__CLASS__;
+        $class_current=(new $class_name);
+        $crud=new crud($class_current,$params);
+         return $crud->crud();
     }
 }

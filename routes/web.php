@@ -24,7 +24,7 @@ Route::post('/news/cats/delete', [news_cats_controller::class, 'delete'])
 Route::post('/news/cats/delete_all',[news_cats_controller::class,'delete_all'])
     ->name('news.cats.delete_all');
 
-Route::get('/crud',[news_cats_controller::class,'change_states_or_delete'])->name('change.state.or.delete');
+    Route::get('/crud',[news_cats_controller::class,'change_states_or_delete'])->name('change.state.or.delete');
 
 //news_routes
 Route::get('/news/create',[news_controller::class,'create'])->name('news.create');
