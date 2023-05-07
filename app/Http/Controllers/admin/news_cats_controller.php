@@ -33,11 +33,11 @@ class news_cats_controller extends Controller
     {
         $news_cats = news_cats::where('parent_id', null)
             ->select(['id', 'title', 'state', 'state_main', 'state_header', 'slug'])
-            ->paginate(5);
+            ->paginate(10);
         if ($request->get('parent_id')) {
             $news_cats = news_cats::where('parent_id', $request->get('parent_id'))
                 ->select(['id', 'title', 'state', 'state_main'
-                    , 'state_header', 'slug'])->paginate(5);
+                    , 'state_header', 'slug'])->paginate(10);
         }
         return view($this->address_view . 'index_news-cats'
             , compact('news_cats'));
@@ -59,13 +59,13 @@ class news_cats_controller extends Controller
     public function delete()
     {
         $news_cats = news_cats::find(request()->get('id'));
-        Session::flash('success','ایتم با موفقیت حذف شد');
         $redirect = route('news.cats.index');
         if ($news_cats["parent_id"] !== null) {
             Session::flash('success','ایتم با موفقیت حذف شد');
             $redirect = route('news.cats.index', ['parent_id' => $news_cats["parent_id"]]);
         }
         $news_cats->delete();
+        Session::flash('success','ایتم با موفقیت حذف شد');
         return response()->json($redirect);
     }
 

@@ -73,8 +73,8 @@
 <script src="/libs/simplebar/simplebar.min.js"></script>
 <script src="/libs/select2/js/select2.min.js"></script>
 <script src="/libs/node-waves/waves.min.js"></script>
-{{--<script src="/libs/tagify/tags.js"></script>--}}
-{{--<script src="/libs/tagify/tags.js_2"></script>--}}
+<script src="/libs/tagify/tags.js"></script>
+<script src="/libs/tagify/tags.js_2"></script>
 <script src="/libs/summernote/summernote-bs4.min.js"></script>
 <script src="/libs/summernote/lang/summernote-fa-IR.min.js"></script>
 <script src="/libs/sweetalert/sweetalert.js"></script>

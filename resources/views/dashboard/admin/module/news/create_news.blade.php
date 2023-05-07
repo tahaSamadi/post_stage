@@ -21,8 +21,6 @@
                         @slot('items')
                             @component('components.form.input',['label'=>'عنوان','id'=>'title'
 ,'name'=>'title','value'=>old('title')])@endcomponent
-                            @component('components.form.input',['id'=>'slug','name'=>'slug'
-,'label'=>'اسلاگ','value'=>old('slug')])@endcomponent
                             @component('components.form.textarea',['label'=>'متن کوتاه','id'=>'short_note'
 ,'name'=>'short_note','value'=>old('short_note')])@endcomponent
                             @component('components.form.tags_input'

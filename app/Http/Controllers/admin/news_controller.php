@@ -7,6 +7,7 @@ use App\Http\Requests\admin\news\new_news_request;
 use App\Models\admin\news;
 use App\Models\admin\news_cats;
 use App\Services\resize_save_image\resize_image;
+use Illuminate\Support\Facades\Session;
 
 class news_controller extends Controller
 {
@@ -27,7 +28,18 @@ class news_controller extends Controller
         return back()->with('success','خبر با موفقیت ساخته شد');
     }
     public function index(){
-        $news=news::where('state','1')->paginate(1);
+        $news=news::paginate(5);
         return view('dashboard.admin.module.news.index_news',compact('news'));
+    }
+
+    public function delete(){
+        $redirect=route('news.index');
+        $id=request()->get('id');
+        $news=news::find($id);
+        $news->delete();
+
+        Session::flash('success','ایتم با موفقیت حذف شد');
+        return response()->json($redirect);
+
     }
 }

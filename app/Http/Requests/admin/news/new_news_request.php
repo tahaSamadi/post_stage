@@ -3,6 +3,7 @@
 namespace App\Http\Requests\admin\news;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class new_news_request extends FormRequest
 {
@@ -22,12 +23,11 @@ class new_news_request extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required'],
+            'title'=>['required',Rule::unique('news','title')],
             'short_note'=>['required','string','max:280'],
             'tags'=>['required'],
             'pic'=>['required','mimes:jpg,png,webp,jpeg,gif','max:2048'],
             'description'=>['required'],
-            'slug'=>['required']
         ];
     }
     protected function passedValidation():void

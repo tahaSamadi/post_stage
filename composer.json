@@ -9,6 +9,7 @@
         "buglinjo/laravel-webp": "^2.3",
         "cviebrock/eloquent-sluggable": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
+        "hekmatinasser/verta": "^8.3",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
