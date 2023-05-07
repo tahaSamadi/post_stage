@@ -30,7 +30,7 @@ class news_controller extends Controller
         return back()->with('success','خبر با موفقیت ساخته شد');
     }
     public function index(){
-        $news=news::paginate(5);
+        $news=news::paginate(10);
         return view($this->address_view.'index_news',compact('news'));
     }
 
