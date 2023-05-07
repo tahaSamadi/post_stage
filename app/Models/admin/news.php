@@ -22,4 +22,7 @@ class news extends Model
     public function get_created_at_verta(){
         return  (new Verta($this->created_at))->format('%B %d، %Y');
     }
+    public function news_get(){
+        return $this->belongsTo(news_cats::class,'cat_id')->select('id','title');
+    }
 }

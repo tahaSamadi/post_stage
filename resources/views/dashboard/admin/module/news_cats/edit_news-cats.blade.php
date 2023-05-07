@@ -20,7 +20,7 @@
                             @component('components.form.input',['id'=>'title','name'=>'title','label'=>'عنوان','value'=>$news_cat->title])@endcomponent
                             @component('components.form.textarea',['id'=>'description','name'=>'description','label'=>'توضیحات','value'=>$news_cat->description])@endcomponent
                             @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats,'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی', 'sub_method'=>'sub_cats','value'=>$news_cat->parent_id])@endcomponent
-                            @component('components.form.button',['attr'=>['class'=>'btn btn-primary mt-4'],'type'=>'submit','value'=>'ثبت    فرم'])@endcomponent
+                            @component('components.form.button',['attr'=>['class'=>'btn btn-primary mt-4'],'type'=>'submit','value'=>'ثبت  فرم'])@endcomponent
                         @endslot
                     @endcomponent
                 </div>

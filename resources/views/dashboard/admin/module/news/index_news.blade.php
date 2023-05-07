@@ -24,6 +24,7 @@
                             <tr>
                                 <th><input type="checkbox" id="check_all"></th>
                                 <th>عنوان</th>
+                                <th>دسته بندی</th>
                                 <th>وضعیت</th>
                                 <th>نمایش در صفحه اصلی</th>
                                 <th>نمایش در منو بالا</th>
@@ -37,6 +38,7 @@
                                     <th scope="row"><input type="checkbox"
                                                            class="item" name="item[]" value="{{$value['id']}}"></th>
                                     <td>{{$value['title']}}</td>
+                                    <td><a href="javascript:void(0)">{{$value->news_get->title}}</a></td>
                                     <td>{{$lang_state[$value['state']]}}</td>
                                     <td>{{$lang_state[$value['state_main']]}}</td>
                                     <td>{{$lang_state[$value['state_header']]}}</td>
@@ -47,7 +49,7 @@
                                                 href="javascript:void(0)" data-href="">
                                                 <i class="mdi mdi-delete-alert-outline"></i></a>
                                         </button>
-                                        <a href="javascript:void(0)">
+                                        <a href="{{route('news.edit',['news'=>$value['slug']])}}">
                                             <button type="button" class="btn btn-primary btn-sm position-relative">
                                                 <i class="bx bx-pencil"></i>
                                             </button>
@@ -58,7 +60,7 @@
                         </tbody>
                     </table>
                     <div class="paginate_link d-flex justify-content-center mt-3">
-                        {{$news_cats->links()}}
+                        {{$news->links()}}
                     </div>
                     @else
                         <div class="alert alert-danger">نتیجه ای یافت نشد</div>
