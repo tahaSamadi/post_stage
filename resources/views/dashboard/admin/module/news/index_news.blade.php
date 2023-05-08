@@ -5,6 +5,10 @@
     <!-- start page title -->
     @component('components.list.header_list',['module_crud_type'=>$module_crud_type['module']])@endcomponent
     @component('components.list.base_table')
+        @slot('filter_section')
+            @component('components.filter.filter_list',['route'=>route('news.index'),'method'=>'get'
+,'options_filter'=>$news_cats])@endcomponent
+        @endslot
         @slot('items')
             <form action="{{route('change.state.or.delete.news')}}" method="get">
                 <div class="card-header">
@@ -38,7 +42,8 @@
                                     <th scope="row"><input type="checkbox"
                                                            class="item" name="item[]" value="{{$value['id']}}"></th>
                                     <td>{{$value['title']}}</td>
-                                    <td><a href="{{route('news.index',['news_cat'=>$value->news_get->slug ?? ''])}}">{{$value->news_get->title ?? ''}}</a></td>
+                                    <td><a href="{{route('news.index',['news_cat'=>$value->news_get->slug ?? ''])}}">
+                                            {{$value->news_get->title ?? 'صفحه اصلی'}}</a></td>
                                     <td>{{$lang_state[$value['state'] ?? '']}}</td>
                                     <td>{{$lang_state[$value['state_main'] ?? '']}}</td>
                                     <td>{{$lang_state[$value['state_header'] ?? '']}}</td>

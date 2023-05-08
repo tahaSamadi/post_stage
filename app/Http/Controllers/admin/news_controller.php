@@ -30,7 +30,7 @@ class news_controller extends Controller
         return back()->with('success','خبر با موفقیت ساخته شد');
     }
     public function index(news_cats $news_cat=null){
-        $news_cats=news_cats::all();
+        $news_cats=news_cats::where('parent_id',null)->get();
         $news=(!is_null($news_cat))?$news_cat->news()->paginate(10):news::paginate(10);
         return view($this->address_view.'index_news',compact('news','news_cats'));
     }

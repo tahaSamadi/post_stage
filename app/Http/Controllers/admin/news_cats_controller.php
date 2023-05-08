@@ -20,7 +20,7 @@ class news_cats_controller extends Controller
     {
         $news_cats = news_cats::where('parent_id', null)
             ->get(['id', 'title', 'state', 'state_main', 'state_header', 'slug']);
-        return view($this->address_view . 'create_news-cats', compact('news_cats','news_cat_without_filter'));
+        return view($this->address_view . 'create_news-cats', compact('news_cats'));
     }
 
     public function store(news_cat_request $request)

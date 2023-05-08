@@ -5,6 +5,10 @@
     @component('components.list.header_list',['module_crud_type'=>$module_crud_type['module']])@endcomponent
     @component('components.list.base_table')
         @slot('filter_section')
+            @component('components.filter.filter_list',['route'=>route('news.cats.index'),'method'=>'get'
+,'options_filter'=>$news_cats])@endcomponent
+        @endslot
+        @slot('filter_section')
             <div class="card-body">
                 <form action="{{route('news.cats.index')}}" method="get">
                     @component('components.form.input',['label'=>'عنوان','id'=>'title'
