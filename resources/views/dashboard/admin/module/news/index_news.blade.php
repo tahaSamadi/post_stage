@@ -6,8 +6,8 @@
     @component('components.list.header_list',['module_crud_type'=>$module_crud_type['module']])@endcomponent
     @component('components.list.base_table')
         @slot('filter_section')
-            @component('components.filter.filter_list',['route'=>route('news.index'),'method'=>'get'
-,'options_filter'=>$news_cats])@endcomponent
+            @component('components.filter.filter_list',['route'=>route('news.index',['news_cat'=>Request::route('news_cat')]),'method'=>'get'
+,'options_filter'=>false])@endcomponent
         @endslot
         @slot('items')
             <form action="{{route('change.state.or.delete.news')}}" method="get">

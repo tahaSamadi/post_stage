@@ -5,6 +5,7 @@ namespace App\Models\admin;
 use App\Models\admin\trait\crud_trait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +26,12 @@ class news extends Model
     }
     public function news_get(){
         return $this->belongsTo(news_cats::class,'cat_id')->select('id','title','slug');
+    }
+    public function scopeFilter(Builder $builder, $title)
+    {
+        if (isset($title) && !empty($title)) {
+            $builder->where('title', 'like', '%' . $title . '%');
+        }
+        return $builder;
     }
 }

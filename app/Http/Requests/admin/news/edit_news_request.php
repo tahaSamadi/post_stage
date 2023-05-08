@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\admin\news;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class edit_news_request extends new_news_request
