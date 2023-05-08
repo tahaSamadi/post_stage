@@ -18,7 +18,7 @@ class resize_image
     public function resize_image(array $resize_images){
         foreach ($resize_images as $resize_image){
             self::make_image(['width'=>$resize_image['width'],'height'=>$resize_image['height']
-                ,'module'=>$resize_image['module'],'thumb_name'=>'thumb1']);
+                ,'module'=>$resize_image['module'],'thumb_name'=>$resize_image['thumb_name']]);
         }
     }
 

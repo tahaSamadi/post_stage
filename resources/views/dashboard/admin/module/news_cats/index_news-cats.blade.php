@@ -4,8 +4,20 @@
     <!-- start page title -->
     @component('components.list.header_list',['module_crud_type'=>$module_crud_type['module']])@endcomponent
     @component('components.list.base_table')
+        @slot('filter_section')
+            <div class="card-body">
+                <form action="{{route('news.cats.index')}}" method="get">
+                    @component('components.form.input',['label'=>'عنوان','id'=>'title'
+,'name'=>'title','value'=>request('title')])@endcomponent
+                        @component('components.form.select2',['name'=>'parent_id','options'=>$news_cats,
+'label'=>'دسته بندی','first_option'=>'دسته بندی اصلی',
+'sub_method'=>'sub_cats','value'=>request('parent_id')])@endcomponent
+                        @component('components.form.button',['type'=>'submit','value'=>'فیلتر بر اساس'])@endcomponent
+                </form>
+            </div>
+        @endslot
         @slot('items')
-            <form action="{{route('change.state.or.delete')}}" method="get">
+            <form action="{{route('change.state.or.delete.news_cat')}}" method="get">
                 <div class="card-header">
                     @if(\Illuminate\Support\Facades\Session::has('success') || \Illuminate\Support\Facades\Session::has('error'))
                         @if(\Illuminate\Support\Facades\Session::has('success'))

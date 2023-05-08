@@ -20,7 +20,7 @@ class news_cats_controller extends Controller
     {
         $news_cats = news_cats::where('parent_id', null)
             ->get(['id', 'title', 'state', 'state_main', 'state_header', 'slug']);
-        return view($this->address_view . 'create_news-cats', compact('news_cats'));
+        return view($this->address_view . 'create_news-cats', compact('news_cats','news_cat_without_filter'));
     }
 
     public function store(news_cat_request $request)
@@ -32,10 +32,12 @@ class news_cats_controller extends Controller
     public function index(Request $request)
     {
         $news_cats = news_cats::where('parent_id', null)
+            ->filter($request->get('title'))
             ->select(['id', 'title', 'state', 'state_main', 'state_header', 'slug'])
             ->paginate(10);
         if ($request->get('parent_id')) {
-            $news_cats = news_cats::where('parent_id', $request->get('parent_id'))
+            $news_cats = news_cats::FilterType($request->get('parent_id'))
+                ->filter($request->get('title'))
                 ->select(['id', 'title', 'state', 'state_main'
                     , 'state_header', 'slug'])->paginate(10);
         }

@@ -29,9 +29,10 @@ class news_controller extends Controller
         news::create($data);
         return back()->with('success','خبر با موفقیت ساخته شد');
     }
-    public function index(){
-        $news=news::paginate(10);
-        return view($this->address_view.'index_news',compact('news'));
+    public function index(news_cats $news_cat=null){
+        $news_cats=news_cats::all();
+        $news=(!is_null($news_cat))?$news_cat->news()->paginate(10):news::paginate(10);
+        return view($this->address_view.'index_news',compact('news','news_cats'));
     }
 
     public function delete(){
@@ -53,7 +54,7 @@ class news_controller extends Controller
     public function update(Request $request,news $news){
         $data=$request->all();
         if(gettype($request->pic)=='object'){
-            $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb1']];
+            $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb2']];
             $image=new resize_image($request->pic);
             $image->resize_image($image_sizes);
             $data=array_merge($data,[
@@ -62,5 +63,9 @@ class news_controller extends Controller
         }
         $news->update($data);
         return back()->with('success', 'تغییرات انجام شد');
+    }
+    public function change_states_or_delete(Request $request){
+        $params= $request->all();
+        return (new news())->crud($params);
     }
 }

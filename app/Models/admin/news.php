@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\admin\trait\crud_trait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class news extends Model
 {
-    use HasFactory,Sluggable;
-    protected $fillable=['title','short_note','tags','pic','cat_id','description','slug'];
+    use HasFactory,Sluggable,crud_trait;
+    protected $fillable=['title','short_note','tags','pic','cat_id','description','slug','state','state_main','state_header'];
     public function sluggable(): array
     {
         return [
@@ -23,6 +24,6 @@ class news extends Model
         return  (new Verta($this->created_at))->format('%B %d، %Y');
     }
     public function news_get(){
-        return $this->belongsTo(news_cats::class,'cat_id')->select('id','title');
+        return $this->belongsTo(news_cats::class,'cat_id')->select('id','title','slug');
     }
 }

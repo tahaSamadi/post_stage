@@ -37,6 +37,7 @@
                         @endslot
                     @endcomponent
                 </div>
+
             </div>
         </div>
         <!-- end col -->

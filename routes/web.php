@@ -24,14 +24,14 @@ Route::post('/news/cats/delete', [news_cats_controller::class, 'delete'])
 Route::post('/news/cats/delete_all',[news_cats_controller::class,'delete_all'])
     ->name('news.cats.delete_all');
 
-    Route::get('/crud',[news_cats_controller::class,'change_states_or_delete'])->name('change.state.or.delete');
+    Route::get('news_cat/crud',[news_cats_controller::class,'change_states_or_delete'])->name('change.state.or.delete.news_cat');
 
 //news_routes
 Route::get('/news/create',[news_controller::class,'create'])->name('news.create');
 Route::post('/news/create', [news_controller::class, 'store'])
     ->name('news.store');
 
-Route::get('/news',[news_controller::class,'index'])->name('news.index');
+Route::get('/news_list/{news_cat:slug?}',[news_controller::class,'index'])->name('news.index');
 
 
 Route::post('/news/delete', [news_controller::class, 'delete'])
@@ -39,3 +39,4 @@ Route::post('/news/delete', [news_controller::class, 'delete'])
 Route::get('/news/edit/{news:slug}', [news_controller::class, 'edit'])
     ->name('news.edit');
 Route::post('/news/update/{news:slug}',[news_controller::class,'update'])->name('news.update');
+Route::get('news/crud',[news_controller::class,'change_states_or_delete'])->name('change.state.or.delete.news');
