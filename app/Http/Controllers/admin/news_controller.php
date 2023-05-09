@@ -31,7 +31,8 @@ class news_controller extends Controller
     }
     public function index(news_cats $news_cat=null){
         $news_cats=news_cats::where('parent_id',null)->get();
-        $news=(!is_null($news_cat))?$news_cat->news()->filter(request()->get('title'))->paginate(10):news::filter(request()->get('title  '))->paginate(10);
+        $news=(!is_null($news_cat))?$news_cat->news()->filter(request()->get('title'))->paginate(10):
+            news::filter(request()->get('title'))->paginate(10);
         return view($this->address_view.'index_news',compact('news','news_cats'));
     }
 
