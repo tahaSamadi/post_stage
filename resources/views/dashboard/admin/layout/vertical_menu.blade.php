@@ -32,7 +32,16 @@
                         <li><a href="{{route('news.index')}}">لیست اخبار</a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class=" mdi mdi-menu-open "></i>
+                        <span>منو ها</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="javascript:void(0)">منو جدید</a></li>
+                        <li><a href="javascript:void(0)">لیست منو ها</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>
