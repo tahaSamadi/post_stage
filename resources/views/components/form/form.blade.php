@@ -3,5 +3,5 @@
     @csrf
     @component('components.form.error')@endcomponent
     @component('components.form.success')@endcomponent
-    {{ $items }}
+    {{ $items ?? '' }}
 </form>

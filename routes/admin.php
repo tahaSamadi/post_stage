@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\menu_controller;
 use App\Http\Controllers\admin\news_cats_controller;
 use App\Http\Controllers\admin\news_controller;
 use App\Models\admin\news_cats;
@@ -9,7 +10,7 @@ Route::get('/',function (){
     $news_cats = news_cats::where('parent_id', null)
         ->get(['id', 'title', 'state', 'state_main', 'state_header', 'slug']);
     return view('dashboard.admin.module.news_cats.create_news-cats', compact('news_cats'));
-});
+})->name('base');
 //news_cats_route
 Route::get('/news/cats/create', [news_cats_controller::class, 'create'])
     ->name('news.cats.create');
@@ -49,3 +50,5 @@ Route::get('news/crud',[news_controller::class,'change_states_or_delete'])->name
 
 
 //menu_routes
+Route::get('/menu/new',[menu_controller::class,'create'])->name('menu.create');
+Route::post('/menu/new',[menu_controller::class,'store'])->name('menu.store');
