@@ -26,7 +26,9 @@
                             @component('components.form.select2',['options'=>$menu_type_open
 ,'name'=>'menu_type_open_id','label'=>'نوع باز شدن'])@endcomponent
                             @component('components.form.select2',['options'=>$menu
-,'name'=>'parent_id','label'=>'منو','first_option'=>'دسته بندی اصلی'])@endcomponent
+,'name'=>'parent_id_footer','label'=>'منو فوتر','first_option'=>'دسته بندی اصلی'])@endcomponent
+                                @component('components.form.select2',['options'=>$menu
+,'name'=>'parent_id_header','label'=>'منو هدر','first_option'=>'دسته بندی اصلی'])@endcomponent
                             @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
                         @endslot
                     @endcomponent
@@ -39,9 +41,5 @@
 
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
+
 @endsection

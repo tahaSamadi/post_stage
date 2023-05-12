@@ -15,8 +15,8 @@ class menu_controller extends Controller
     protected $menu_type_open;
     public function __construct()
     {
-        $this->menu_type=menu_type::all();
-        $this->menu_type_open=menu_type_open::all();
+        $this->menu_type=menu_type::select('id','title')->get();
+        $this->menu_type_open=menu_type_open::select('id','title')->get();
 
     }
 
@@ -28,5 +28,6 @@ class menu_controller extends Controller
     }
     public function store(Request $request){
         menu::create($request->all());
+        return back()->with('success', 'تغییرات انجام شد');
     }
 }

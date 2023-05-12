@@ -1,5 +1,5 @@
-@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false, 'sub_method' => '','value'=>''])
-<div class="mt-3">
+@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false, 'sub_method' => '','value'=>'','id'=>false])
+<div class="mt-3" @if($id) id="{{$id}}" @endif>
     <label class="control-label">{{$label}}</label>
     <select class="form-control select2" name="{{$name}}">
         @if($first_option)

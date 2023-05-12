@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\admin\news\edit_news_request;
 use App\Http\Requests\admin\news\new_news_request;
 use App\Models\admin\news;
 use App\Models\admin\news_cats;
@@ -52,10 +53,10 @@ class news_controller extends Controller
             ->get(['id', 'title', 'state', 'state_main', 'state_header', 'slug']);
         return view($this->address_view.'edit_news',compact('news','news_cats'));
     }
-    public function update(Request $request,news $news){
+    public function update(edit_news_request $request,news $news){
         $data=$request->all();
         if(gettype($request->pic)=='object'){
-            $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb2']];
+            $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb1']];
             $image=new resize_image($request->pic);
             $image->resize_image($image_sizes);
             $data=array_merge($data,[
