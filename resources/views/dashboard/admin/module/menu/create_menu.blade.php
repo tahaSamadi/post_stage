@@ -22,13 +22,13 @@
                             @component('components.form.input',['label'=>'عنوان','id'=>'title'
 ,'name'=>'title','value'=>old('title')])@endcomponent
                             @component('components.form.select2',['options'=>$menu_type
-,'name'=>'menu_type_id','label'=>'مکان'])@endcomponent
+,'name'=>'menu_type','label'=>'مکان','id'=>'menu_type','first_option'=>'انتخاب کنید'])@endcomponent
                             @component('components.form.select2',['options'=>$menu_type_open
-,'name'=>'menu_type_open_id','label'=>'نوع باز شدن'])@endcomponent
+,'name'=>'menu_type_open','label'=>'نوع باز شدن'])@endcomponent
                             @if(isset($menu_type[0]))
                                 @foreach($menu_type as $type)
-                                        @component('components.form.select2',['options'=>$type->menu
-,'name'=>'parent_id_'.$type['type'],'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type']])@endcomponent
+                                        @component('components.form.select2',['options'=>$type->menu,'name'=>'parent_id'.$type['type']
+,'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type']])@endcomponent
                                 @endforeach
                             @endif
                             @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
@@ -42,8 +42,22 @@
     </div>
 
 @endsection
+
+
 @section('js')
     <script>
-        $(".")
+        $("#header,#footer").removeClass('d-block')
+        $("#header,#footer").addClass('d-none')
+       $("#menu_type select").on('change',function () {
+           $("#header,#footer").removeClass('d-block')
+           $("#header,#footer").addClass('d-none')
+           var value=$(this).val()
+           if(value == '2'){
+               $("#header").addClass("d-block")
+           }
+           if(value == '1'){
+               $("#footer").addClass("d-block")
+           }
+       })
     </script>
 @endsection

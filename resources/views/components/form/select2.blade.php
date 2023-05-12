@@ -1,6 +1,5 @@
-@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false, 'sub_method' => '','value'=>'','id'=>''])
-
-<div class="mt-3"  @if(isset($id)) id="{{$id}}" @endif>
+@props(['options'=>[],'label'=>'','name'=>'','first_option'=>false, 'sub_method' => '','value'=>'','id'=>false])
+<div class="mt-3"  @if($id) id="{{$id}}" @endif>
     <label class="control-label">{{$label}}</label>
     <select class="form-control select2" name="{{$name}}">
         @if($first_option)
@@ -14,8 +13,3 @@
         @endif
     </select>
 </div>
-@section('extra_js')
-    <script>
-        $("#select_box").val("{{$value}}")
-    </script>
-@endsection

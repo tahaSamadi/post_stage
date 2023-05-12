@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('menu_type', function (Blueprint $table) {
-            $table->dropIfExists('type');
+            $table->dropColumn('type');
         });
     }
 };

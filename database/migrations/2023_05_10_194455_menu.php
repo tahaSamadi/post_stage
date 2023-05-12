@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->unsignedBigInteger('menu_type_id');
-            $table->foreign('menu_type_id')->references('id')->on('menu_type')->onDelete('cascade');
-            $table->unsignedBigInteger('menu_type_open_id');
-            $table->foreign('menu_type_open_id')->references('id')->on('menu_type_open')->onDelete('cascade');
+            $table->unsignedBigInteger('menu_type');
+            $table->foreign('menu_type')->references('id')->
+            on('menu_type')->onDelete('cascade');
+            $table->unsignedBigInteger('menu_type_open');
+            $table->foreign('menu_type_open')->references('id')->
+            on('menu_type_open')->onDelete('cascade');
             $table->bigInteger('parent_id')->unsigned()->nullable();
-            $table->foreign('parent_id')->on('menu')->references('id')->onDelete('set null');
+            $table->foreign('parent_id')->on('menu')
+                ->references('id')->onDelete('set null');
             $table->timestamps();
         });
     }
