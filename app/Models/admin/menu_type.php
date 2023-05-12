@@ -9,4 +9,7 @@ class menu_type extends Model
 {
     use HasFactory;
     protected $table='menu_type';
+    public function menu(){
+        return $this->hasOne(menu::class,'menu_type_id');
+    }
 }

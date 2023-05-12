@@ -15,7 +15,7 @@ class menu_controller extends Controller
     protected $menu_type_open;
     public function __construct()
     {
-        $this->menu_type=menu_type::select('id','title')->get();
+        $this->menu_type=menu_type::select('id','title','type')->get();
         $this->menu_type_open=menu_type_open::select('id','title')->get();
 
     }

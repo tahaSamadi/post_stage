@@ -25,10 +25,12 @@
 ,'name'=>'menu_type_id','label'=>'مکان'])@endcomponent
                             @component('components.form.select2',['options'=>$menu_type_open
 ,'name'=>'menu_type_open_id','label'=>'نوع باز شدن'])@endcomponent
-                            @component('components.form.select2',['options'=>$menu
-,'name'=>'parent_id_footer','label'=>'منو فوتر','first_option'=>'دسته بندی اصلی'])@endcomponent
-                                @component('components.form.select2',['options'=>$menu
-,'name'=>'parent_id_header','label'=>'منو هدر','first_option'=>'دسته بندی اصلی'])@endcomponent
+                            @if(isset($menu_type[0]))
+                                @foreach($menu_type as $type)
+                                        @component('components.form.select2',['options'=>$type->menu
+,'name'=>'parent_id_'.$type['type'],'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type']])@endcomponent
+                                @endforeach
+                            @endif
                             @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
                         @endslot
                     @endcomponent
@@ -41,5 +43,7 @@
 
 @endsection
 @section('js')
-
+    <script>
+        $(".")
+    </script>
 @endsection
