@@ -20,7 +20,7 @@ class operations
                    $_item->$state_type='0';
                    $_item->save();
                }
-                if($_item->$state_type == '0'){
+                else if($_item->$state_type == '0'){
                     $_item->$state_type='1';
                     $_item->save();
                 }

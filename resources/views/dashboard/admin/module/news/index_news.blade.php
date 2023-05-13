@@ -49,15 +49,15 @@
                                     <td>{{$lang_state[$value['state_header'] ?? '']}}</td>
                                     <td>{{$value->get_created_at_verta() ?? ''}}</td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm"
+                                        <div class="btn btn-danger btn-sm"
                                                 data-delete="{{route('news.delete',['id'=>$value['id']])}}"><a
                                                 href="javascript:void(0)" data-href="">
                                                 <i class="mdi mdi-delete-alert-outline"></i></a>
-                                        </button>
+                                        </div>
                                         <a href="{{route('news.edit',['news'=>$value['slug'] ?? ''])}}">
-                                            <button type="button" class="btn btn-primary btn-sm position-relative">
+                                            <div type="button" class="btn btn-primary btn-sm position-relative">
                                                 <i class="bx bx-pencil"></i>
-                                            </button>
+                                            </div>
                                         </a>
                                     </td>
                                 </tr>

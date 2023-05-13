@@ -58,24 +58,24 @@
                                     <td>{{$lang_state[$news_cat['state_header']]}}</td>
                                     <td>{{$news_cat->get_created_at_verta()}}</td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm"
+                                        <div class="btn btn-danger btn-sm"
                                                 data-delete="{{route('news.cats.delete',['id'=>$news_cat['id']])}}"><a
                                                 href="javascript:void(0)" data-href="">
                                                 <i class="mdi mdi-delete-alert-outline"></i></a>
-                                        </button>
+                                        </div>
                                         <a href="{{route('news.cats.edit',['news_cat'=>$news_cat['slug']])}}">
-                                            <button type="button" class="btn btn-primary btn-sm position-relative">
+                                            <div type="button" class="btn btn-primary btn-sm position-relative">
                                                 <i class="bx bx-pencil"></i>
-                                            </button>
+                                            </div>
                                         </a>
                                         <a href="{{route('news.cats.index',['parent_id'=>$news_cat['id']])}}">
-                                            <button type="button" class="btn btn-dark btn-sm position-relative" >
+                                            <div type="button" class="btn btn-dark btn-sm position-relative" >
                                                 <i class=" mdi mdi-npm-variant-outline "></i>
 
                                                 <span
                                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                                 {{$news_cat->sub_cats()->count()}}</span>
-                                            </button>
+                                            </div>
                                         </a>
                                     </td>
                                 </tr>
