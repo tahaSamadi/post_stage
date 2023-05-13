@@ -10,6 +10,7 @@ class menu_type extends Model
     use HasFactory;
     protected $table='menu_type';
     public function menu(){
-        return $this->hasMany(menu::class,'menu_type');
+        return $this->hasMany(menu::class,'menu_type')->where('parent_id',null);
     }
+
 }

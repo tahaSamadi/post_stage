@@ -193,7 +193,10 @@ return [
         'short_note' => 'متن کوتاه',
         'tags'=>'کلمه کلیدی',
         'pic'=>'تصویر',
-        'long_note'=>'متن بلند'
+        'long_note'=>'متن بلند',
+        'menu_type'=>'مکان',
+        'parent_id_header'=>'هدر',
+        'parent_id_footer'=>'هدر',
     ],
 
 ];

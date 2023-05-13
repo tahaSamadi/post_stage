@@ -27,8 +27,8 @@
 ,'name'=>'menu_type_open','label'=>'نوع باز شدن'])@endcomponent
                             @if(isset($menu_type[0]))
                                 @foreach($menu_type as $type)
-                                        @component('components.form.select2',['options'=>$type->menu,'name'=>'parent_id'.$type['type']
-,'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type']])@endcomponent
+                                @component('components.form.select2',['options'=>$type->menu,'name'=>'parent_id_'.$type['type']
+,'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type'],'sub_method'=>'sub_cats'])@endcomponent
                                 @endforeach
                             @endif
                             @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
@@ -46,18 +46,24 @@
 
 @section('js')
     <script>
-        $("#header,#footer").removeClass('d-block')
-        $("#header,#footer").addClass('d-none')
+        function check_footer(value){
+            if(value === '2'){
+                $("#header").addClass("d-block")
+            }
+            if(value === '1'){
+                $("#footer").addClass("d-block")
+            }
+        }
+
+
+
+        $("#header,#footer").removeClass('d-block').addClass('d-none')
+        check_footer($("#menu_type select").val())
        $("#menu_type select").on('change',function () {
-           $("#header,#footer").removeClass('d-block')
-           $("#header,#footer").addClass('d-none')
+           $("#header,#footer").removeClass('d-block').addClass('d-none')
            var value=$(this).val()
-           if(value == '2'){
-               $("#header").addClass("d-block")
-           }
-           if(value == '1'){
-               $("#footer").addClass("d-block")
-           }
+           check_footer(value)
        })
+
     </script>
 @endsection
