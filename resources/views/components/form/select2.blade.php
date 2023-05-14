@@ -7,9 +7,10 @@
         @endif
         @if(isset($options[0]))
             @foreach($options as $option)
-                <option value="{{$option["id"]}}">{{$option["title"]}}</option>
-                @component('components.form.sub_option',['options'=>$option, 'method'=>$sub_method])@endcomponent
+                <option value="{{$option["id"]}}" @if($option['id'] == $value) selected @endif>{{$option["title"]}}</option>
+                @component('components.form.sub_option',['options'=>$option, 'method'=>$sub_method,'value'=>$value])@endcomponent
             @endforeach
         @endif
     </select>
 </div>
+

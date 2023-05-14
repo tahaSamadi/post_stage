@@ -30,3 +30,9 @@
     </div>
 
 @endsection
+@section('js')
+    <script >
+        $("[name='parent_id']").val("{{$news_cat->parent_id}}");
+        $("[name='parent_id'] option[value='{{$news_cat->id}}']").remove()
+    </script>
+@endsection

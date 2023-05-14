@@ -54,6 +54,13 @@
             var value=$(this).val()
             check_footer(value)
         })
-
     </script>
+    @foreach($menu_type as $type)
+        @if($type['id'] == $menu->menu_type)
+            <script>
+                $("[name='parent_id_{{$type['type']}}']").val("{{$menu->parent_id}}");
+                $("[name='parent_id_{{$type['type']}}'] option[value='{{$menu->id}}']").remove()
+            </script>
+        @endif
+    @endforeach
 @endsection
