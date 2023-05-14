@@ -45,6 +45,15 @@
 
 
 @section('js')
+    @foreach($menu_type as $type)
+        @if($type['id'] == old('menu_type'))
+            <script>
+                $("[name='parent_id_{{$type['type']}}']").val("{{old('parent_id_'.$type['type'])}}");
+                $("[name='menu_type']").val("{{old('menu_type')}}");
+                $("[name='menu_type_open']").val("{{old('menu_type_open')}}");
+            </script>
+        @endif
+    @endforeach
     <script>
         function check_footer(value){
             if(value === '2'){
@@ -66,4 +75,5 @@
        })
 
     </script>
+
 @endsection
