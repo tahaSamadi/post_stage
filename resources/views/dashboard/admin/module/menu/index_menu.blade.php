@@ -48,7 +48,7 @@
                                                         href="javascript:void(0)" data-href="">
                                                         <i class="mdi mdi-delete-alert-outline"></i></a>
                                                 </div>
-                                                <a href="javascript:void(0)">
+                                                <a href="{{route('menu.edit',['menu'=>$value['id']])}}">
                                                     <div type="button" class="btn btn-primary btn-sm position-relative">
                                                         <i class="bx bx-pencil"></i>
                                                     </div>

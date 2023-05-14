@@ -49,6 +49,17 @@ class menu_controller extends Controller
         return response()->json($redirect);
 
     }
+    public function edit(menu $menu){
+        $menu_type=$this->menu_type;
+        $menu_type_open=$this->menu_type_open;
+        return view($this->address_view.'edit_menu',compact('menu','menu_type','menu_type_open'));
+    }
+
+    public function update(menu_new_request $request, menu $menu)
+    {
+        $menu->update($request->all());
+        return back()->with('success', 'تغییرات انجام شد');
+    }
     public function change_states_or_delete(Request $request){
         $params= $request->all();
         return (new menu())->crud($params);
@@ -64,4 +75,5 @@ class menu_controller extends Controller
         }
         return $params;
     }
+
 }
