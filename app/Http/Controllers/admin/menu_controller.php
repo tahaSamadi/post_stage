@@ -7,7 +7,9 @@ use App\Http\Requests\admin\menu\menu_new_request;
 use App\Models\admin\menu;
 use App\Models\admin\menu_type;
 use App\Models\admin\menu_type_open;
+use App\Models\admin\news;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class menu_controller extends Controller
 {
@@ -31,6 +33,25 @@ class menu_controller extends Controller
         $data=self::set_parent_id($request->all());
         menu::create($data);
         return back()->with('success', 'منو ایجاد شد');
+    }
+    public function index(){
+        $parent_id=(request()->get('parent_id') == null) ? null : request()->get('parent_id');
+        $menu=menu::where('parent_id',$parent_id)->filter(request()->get('title'))->paginate(10);
+        return view($this->address_view.'index_menu',compact('menu'));
+    }
+    public function delete(){
+        $redirect=route('menu.index');
+        $id=request()->get('id');
+        $news=menu::find($id);
+        $news->delete();
+
+        Session::flash('success','ایتم با موفقیت حذف شد');
+        return response()->json($redirect);
+
+    }
+    public function change_states_or_delete(Request $request){
+        $params= $request->all();
+        return (new menu())->crud($params);
     }
 
 

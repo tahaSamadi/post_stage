@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('menu_type_open');
             $table->foreign('menu_type_open')->references('id')->
             on('menu_type_open')->onDelete('cascade');
+            $table->integer('state')->default(1);
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->foreign('parent_id')->on('menu')
                 ->references('id')->onDelete('set null');

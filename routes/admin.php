@@ -52,3 +52,7 @@ Route::get('news/crud',[news_controller::class,'change_states_or_delete'])->name
 //menu_routes
 Route::get('/menu/new',[menu_controller::class,'create'])->name('menu.create');
 Route::post('/menu/new',[menu_controller::class,'store'])->name('menu.store');
+Route::get('/men_list',[menu_controller::class,'index'])->name('menu.index');
+Route::post('/menu/delete', [menu_controller::class, 'delete'])
+    ->name('menu.delete');
+Route::get('menu/crud',[menu_controller::class,'change_states_or_delete'])->name('change.state.or.delete.menu');

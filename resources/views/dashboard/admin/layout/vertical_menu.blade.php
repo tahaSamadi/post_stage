@@ -39,7 +39,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('menu.create')}}">منو جدید</a></li>
-                        <li><a href="javascript:void(0)">لیست منو ها</a></li>
+                        <li><a href="{{route('menu.index')}}">لیست منو ها</a></li>
                     </ul>
                 </li>
 

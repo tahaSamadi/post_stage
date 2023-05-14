@@ -82,9 +82,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="paginate_link d-flex justify-content-center mt-3">
-                            {{$news_cats->links()}}
-                        </div>
+                        @component('components.list.pagination',['items'=>$news_cats])@endcomponent
                     @else
                         <div class="alert alert-danger">نتیجه ای یافت نشد</div>
                     @endif
