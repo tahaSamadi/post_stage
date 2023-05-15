@@ -22,7 +22,7 @@
                                 @if(isset($menu_type[0]))
                                     @foreach($menu_type as $type)
                                         @component('components.form.select2',['options'=>$type->menu,'name'=>'parent_id_'.$type['type']
-        ,'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type'],'sub_method'=>'sub_cats'])@endcomponent
+        ,'label'=>__('fields.'.$type['type']),'first_option'=>'دسته بندی اصلی','id'=>$type['type'],'sub_method'=>'sub_cats','ignore_id'=>$menu['id']])@endcomponent
                                     @endforeach
                                 @endif
                                 @component('components.form.button',['type'=>'submit','value'=>'ثبت فرم'])@endcomponent
@@ -35,6 +35,15 @@
     </div>
 @endsection
 @section('js')
+    @foreach($menu_type as $type)
+        @if($type['id'] == $menu->menu_type)
+            <script>
+                $("[name='parent_id_{{$type['type']}}']").val("{{$menu->parent_id}}");
+                $("[name='menu_type']").val("{{$menu->menu_type}}");
+                $("[name='menu_type_open']").val("{{$menu->menu_type_open}}");
+            </script>
+        @endif
+    @endforeach
     <script>
         function check_footer(value){
             if(value === '2'){
@@ -55,12 +64,5 @@
             check_footer(value)
         })
     </script>
-    @foreach($menu_type as $type)
-        @if($type['id'] == $menu->menu_type)
-            <script>
-                $("[name='parent_id_{{$type['type']}}']").val("{{$menu->parent_id}}");
-                $("[name='parent_id_{{$type['type']}}'] option[value='{{$menu->id}}']").remove()
-            </script>
-        @endif
-    @endforeach
+
 @endsection

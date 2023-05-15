@@ -57,7 +57,8 @@ class menu_controller extends Controller
 
     public function update(menu_new_request $request, menu $menu)
     {
-        $menu->update($request->all());
+        $data=self::set_parent_id($request->all());
+        $menu->update($data);
         return back()->with('success', 'تغییرات انجام شد');
     }
     public function change_states_or_delete(Request $request){
