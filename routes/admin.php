@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\menu_controller;
 use App\Http\Controllers\admin\news_cats_controller;
 use App\Http\Controllers\admin\news_controller;
+use App\Http\Controllers\admin\pages_controller;
 use App\Models\admin\news_cats;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,9 @@ Route::get('menu/crud',[menu_controller::class,'change_states_or_delete'])->name
 Route::get('/menu/edit/{menu:id}', [menu_controller::class, 'edit'])
     ->name('menu.edit');
 Route::post('/menu/update/{menu:id}',[menu_controller::class,'update'])->name('menu.update');
+
+
+
+//pages_route
+Route::get('/page/create',[pages_controller::class,'create'])->name('page.create');
+Route::post('/page/create',[pages_controller::class,'store'])->name('page.store');

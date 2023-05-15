@@ -34,12 +34,22 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="has-arrow waves-effect">
-                        <i class=" mdi mdi-menu-open "></i>
+                        <i class="mdi mdi-menu-open"></i>
                         <span>منو ها</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('menu.create')}}">منو جدید</a></li>
                         <li><a href="{{route('menu.index')}}">لیست منو ها</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-google-pages"></i>
+                        <span>صفحات</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('page.create')}}">صفحه جدید</a></li>
+                        <li><a href="javascript:void(0)">لیست صفحات</a></li>
                     </ul>
                 </li>
 

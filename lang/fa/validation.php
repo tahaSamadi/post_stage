@@ -197,6 +197,8 @@ return [
         'menu_type'=>'مکان',
         'parent_id_header'=>'هدر',
         'parent_id_footer'=>'هدر',
+        'url'=>'آدرس',
+        'note'=>'متن بلند',
     ],
 
 ];

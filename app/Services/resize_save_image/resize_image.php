@@ -11,7 +11,7 @@ class resize_image
     public function __construct($pic)
     {
         $this->image_name_path=time().'.'.$pic->extension();
-        $this->directory_name='public/news/';
+        $this->directory_name='public/pages/';
         $pic->storeAs($this->directory_name,$this->image_name_path);
     }
 
