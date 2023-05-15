@@ -22,7 +22,7 @@ class news_controller extends Controller
     }
     public function store(new_news_request $request){
         $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb1']];
-        $image=new resize_image($request->pic);
+        $image=new resize_image($request->pic,'news');
         $image->resize_image($image_sizes);
         $data=array_merge($request->all(),[
            'pic'=>$this->module.'/'.$image->getImageNamePath()
@@ -57,7 +57,7 @@ class news_controller extends Controller
         $data=$request->all();
         if(gettype($request->pic)=='object'){
             $image_sizes=[['width'=>300,'height'=>100,'module'=>$this->module,'thumb_name'=>'thumb1']];
-            $image=new resize_image($request->pic);
+            $image=new resize_image($request->pic,'news');
             $image->resize_image($image_sizes);
             $data=array_merge($data,[
                 'pic'=>$this->module.'/'.$image->getImageNamePath()

@@ -8,10 +8,12 @@ class resize_image
 {
     protected string $image_name_path;
     protected string $directory_name;
-    public function __construct($pic)
+    protected string $module_name;
+    public function __construct($pic,$module_name)
     {
         $this->image_name_path=time().'.'.$pic->extension();
-        $this->directory_name='public/pages/';
+        $this->module_name=$module_name;
+        $this->directory_name='public/'.$this->module_name.'/';
         $pic->storeAs($this->directory_name,$this->image_name_path);
     }
 
