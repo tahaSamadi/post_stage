@@ -71,3 +71,16 @@ Route::post('/menu/update/{menu:id}',[menu_controller::class,'update'])->name('m
 //pages_route
 Route::get('/page/create',[pages_controller::class,'create'])->name('page.create');
 Route::post('/page/create',[pages_controller::class,'store'])->name('page.store');
+
+
+Route::get('/page_list',[pages_controller::class,'index'])->name('page.index');
+Route::post('/page/delete', [pages_controller::class, 'delete'])
+    ->name('page.delete');
+
+
+Route::get('page/crud',[pages_controller::class,'change_states_or_delete'])->name('change.state.or.delete.page');
+
+
+Route::get('/page/edit/{page:id}', [pages_controller::class, 'edit'])
+    ->name('page.edit');
+Route::post('/page/update/{page:id}',[pages_controller::class,'update'])->name('page.update');

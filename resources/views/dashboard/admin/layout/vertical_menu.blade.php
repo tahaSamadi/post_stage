@@ -44,12 +44,12 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-google-pages"></i>
+                        <i class="mdi mdi-format-page-break"></i>
                         <span>صفحات</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('page.create')}}">صفحه جدید</a></li>
-                        <li><a href="javascript:void(0)">لیست صفحات</a></li>
+                        <li><a href="{{route('page.index')}}">لیست صفحات</a></li>
                     </ul>
                 </li>
 

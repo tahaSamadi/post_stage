@@ -45,7 +45,7 @@
                                             <td>
                                                 <div class="btn btn-danger btn-sm"
                                                      data-delete="{{route('menu.delete',['id'=>$value['id']])}}"><a
-                                                        href="javascript:void(0)" data-href="">
+                                                        href="javascript:void(0)">
                                                         <i class="mdi mdi-delete-alert-outline"></i></a>
                                                 </div>
                                                 <a href="{{route('menu.edit',['menu'=>$value['id']])}}">

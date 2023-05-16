@@ -26,8 +26,9 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (NotFoundHttpException $e, Request $request) {
             if ($request->is('admin/*')) {
-                return response()->view('errors.404', [], 404);
+                return response()->view('errors.admin.404', [], 404);
             }
+
         });
     }
 }

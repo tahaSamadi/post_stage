@@ -24,8 +24,6 @@ class page_new_request extends FormRequest
         return [
             'title'=>['required','string'],
             'url'=>['required'],
-            'note'=>['required'],
-            'pic'=>['required','mimes:jpg,png,webp,jpeg,gif','max:2048'],
         ];
     }
 }
