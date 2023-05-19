@@ -19,7 +19,18 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">منوها</li>
-
+                <li>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class=" mdi mdi-settings-transfer-outline "></i>
+                        <span>تنظیمات</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('config_main.index')}}">تنظیمات اصلی</a></li>
+                        <li><a href="javascript:void(0)">تغییر رمز عبور</a></li>
+                        <li><a href="javascript:void(0)">جزییات بازدیدکنندگان</a></li>
+                        <li><a href="javascript:void(0)">جزییات ورود به مدیریت</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript:void(0);" class="has-arrow waves-effect">
                         <i class=" mdi mdi-newspaper"></i>

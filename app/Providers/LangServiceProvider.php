@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\admin\config_main;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,20 +34,25 @@ class LangServiceProvider extends ServiceProvider
             $view->with('module_crud_type',$module_crud_type);
         });
 
-        View::composer('*', function($view){
+        View::composer('dashboard.admin.module.*', function($view){
             $crud_names=[
                 'create'=>'ایجاد',
                 'edit'=>'ویرایش',
                 'index'=>'لیست',
+                'config'=>'تنظیمات',
             ];
             $view->with('crud_names',$crud_names);
         });
-        View::composer('*', function($view){
+        View::composer('dashboard.admin.module.*', function($view){
             $lang_state=[
                 0=>'عدم نمایش',
                 1=>'نمایش',
             ];
             $view->with('lang_state',$lang_state);
+        });
+        View::composer('dashboard.admin.module.setting.config_main',function ($view){
+            $config_keys=(config_main::count()) ? config_main::first() : [];
+            $view->with('config_key',$config_keys);
         });
     }
 }

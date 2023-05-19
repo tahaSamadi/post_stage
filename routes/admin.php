@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\config_controller;
 use App\Http\Controllers\admin\menu_controller;
 use App\Http\Controllers\admin\news_cats_controller;
 use App\Http\Controllers\admin\news_controller;
@@ -14,6 +15,11 @@ Route::post('login',[\App\Http\Controllers\admin\Auth\AuthenticateSessionControl
 
 //news_cats_route
 Route::middleware('auth:admin')->group(function (){
+    //setting_route
+    Route::get('/config_main',[config_controller::class,'index'])->name('config_main.index');
+    Route::post('/config_main',[config_controller::class,'store'])->name('config_main.store');
+
+
     Route::get('/',function (){
         $news_cats = news_cats::where('parent_id', null)
             ->get(['id', 'title', 'state', 'state_main', 'state_header', 'slug']);
