@@ -26,7 +26,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('config_main.index')}}">تنظیمات اصلی</a></li>
-                        <li><a href="javascript:void(0)">تغییر رمز عبور</a></li>
+                        <li><a href="{{route('change.password.index')}}">تغییر رمز عبور</a></li>
                         <li><a href="javascript:void(0)">جزییات بازدیدکنندگان</a></li>
                         <li><a href="javascript:void(0)">جزییات ورود به مدیریت</a></li>
                     </ul>

@@ -3,6 +3,7 @@
     @section('title')خوش امدید@endsection
     @section('description')جهت دسترسی به پنل مدیریت وارد شوید@endsection
     @section('items_filter')
+            <div class="alert alert-success">{{\Illuminate\Support\Facades\Session::get('password_success')}}</div>
     <form class="form-horizontal" action="{{route('admin.login')}}" method="post">
         @csrf
         <div class="form-group">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\Auth\change_password;
 use App\Http\Controllers\admin\config_controller;
 use App\Http\Controllers\admin\menu_controller;
 use App\Http\Controllers\admin\news_cats_controller;
@@ -97,4 +98,9 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('/page/edit/{page:id}', [pages_controller::class, 'edit'])
         ->name('page.edit');
     Route::post('/page/update/{page:id}',[pages_controller::class,'update'])->name('page.update');
+
+
+
+    Route::get('/change_password',[change_password::class,'index'])->name('change.password.index');
+    Route::post('/change_password',[change_password::class,'store'])->name('change.password.store');
 });

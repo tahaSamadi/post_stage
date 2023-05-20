@@ -199,6 +199,8 @@ return [
         'parent_id_footer'=>'هدر',
         'url'=>'آدرس',
         'note'=>'متن بلند',
+        'current_password'=>'رمز عبور فعلی',
+        'new_password'=>'رمز عبور جدید',
     ],
 
 ];
