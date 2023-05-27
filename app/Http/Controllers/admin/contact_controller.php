@@ -15,7 +15,8 @@ class contact_controller extends Controller
      */
     public function index()
     {
-
+        $contacts=contacts::all();
+        return view($this->address_view.'index_contact');
     }
 
     /**

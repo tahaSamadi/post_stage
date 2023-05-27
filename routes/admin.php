@@ -108,4 +108,5 @@ Route::middleware('auth:admin')->group(function (){
 
     Route::get('/contact/create',[contact_controller::class,'create'])->name('contact.create');
     Route::post('/contact/store',[contact_controller::class,'store'])->name('contact.store');
+    Route::get('/contact/index',[contact_controller::class,'index'])->name('contact.index');
 });

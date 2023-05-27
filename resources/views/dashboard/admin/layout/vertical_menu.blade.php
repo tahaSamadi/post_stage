@@ -70,6 +70,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('contact.create')}}">دسته بندی جدید تماس با ما</a></li>
+                        <li><a href="{{route('contact.index')}}">لیست دسته بندی تماس با ما</a></li>
                     </ul>
                 </li>
             </ul>
