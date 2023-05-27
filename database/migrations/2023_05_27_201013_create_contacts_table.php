@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->string("email")->unique();
             $table->string("number");
+            $table->integer("state")->default('1');
             $table->timestamps();
         });
     }

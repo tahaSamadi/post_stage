@@ -15,7 +15,7 @@ class contact_controller extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
