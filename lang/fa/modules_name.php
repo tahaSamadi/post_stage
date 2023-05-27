@@ -7,5 +7,6 @@ return [
     'menu'=>'منو',
     'page'=>'صفحات',
     'main'=>'اصلی',
+    'contact'=>'تماس با ما',
     'change-password'=>'عوض کردن رمز عبور'
 ];

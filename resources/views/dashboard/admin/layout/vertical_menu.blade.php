@@ -63,7 +63,15 @@
                         <li><a href="{{route('page.index')}}">لیست صفحات</a></li>
                     </ul>
                 </li>
-
+                <li>
+                    <a href="javascript:void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-phone-call"></i>
+                        <span>تماس با ما</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{route('contact.create')}}">دسته بندی جدید تماس با ما</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\Auth\change_password;
 use App\Http\Controllers\admin\config_controller;
+use App\Http\Controllers\admin\contact_controller;
 use App\Http\Controllers\admin\menu_controller;
 use App\Http\Controllers\admin\news_cats_controller;
 use App\Http\Controllers\admin\news_controller;
@@ -103,4 +104,8 @@ Route::middleware('auth:admin')->group(function (){
 
     Route::get('/change_password',[change_password::class,'index'])->name('change.password.index');
     Route::post('/change_password',[change_password::class,'store'])->name('change.password.store');
+
+
+    Route::get('/contact/create',[contact_controller::class,'create'])->name('contact.create');
+    Route::post('/contact/store',[contact_controller::class,'store'])->name('contact.store');
 });

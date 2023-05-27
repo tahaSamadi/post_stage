@@ -201,6 +201,7 @@ return [
         'note'=>'متن بلند',
         'current_password'=>'رمز عبور فعلی',
         'new_password'=>'رمز عبور جدید',
+        'number'=>'شماره همراه',
     ],
 
 ];
