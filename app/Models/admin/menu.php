@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\admin\trait\convert_date;
 use App\Models\admin\trait\crud_trait;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class menu extends Model
 {
-    use HasFactory,crud_trait;
+    use HasFactory,crud_trait,convert_date;
     protected $table="menu";
     protected $fillable=['title','menu_type','menu_type_open','parent_id'];
     public function sub_cats(){
@@ -25,8 +26,5 @@ class menu extends Model
             $builder->where('title', 'like', '%' . $title . '%');
         }
         return $builder;
-    }
-    public function get_created_at_verta(){
-        return  (new Verta($this->created_at))->format('%B %d، %Y');
     }
 }

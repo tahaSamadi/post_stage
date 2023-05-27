@@ -2,6 +2,7 @@
 
 namespace App\Models\admin;
 
+use App\Models\admin\trait\convert_date;
 use App\Models\admin\trait\crud_trait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Hekmatinasser\Verta\Verta;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class news_cats extends Model
 {
-    use HasFactory,Sluggable,crud_trait;
+    use HasFactory,Sluggable,crud_trait,convert_date;
 
     protected $fillable=['title','slug','description','parent_id','state','state_main','state_header'];
     public function sluggable(): array
